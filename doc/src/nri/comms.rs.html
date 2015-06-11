@@ -127,6 +127,8 @@
 <span id="85">85</span>
 <span id="86">86</span>
 <span id="87">87</span>
+<span id="88">88</span>
+<span id="89">89</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! Utilities for communication between the supervisor thread and services</span>
 
@@ -137,8 +139,10 @@
 <span class='kw'>pub</span> <span class='kw'>enum</span> <span class='ident'>Cmd</span> {
     <span class='doccomment'>/// Start the service</span>
     <span class='ident'>Start</span>,
+
     <span class='doccomment'>/// Stop the service (but keep the thread running)</span>
     <span class='ident'>Stop</span> ,
+
     <span class='doccomment'>/// Stop the service and kill the thread</span>
     <span class='ident'>Quit</span> ,
 }

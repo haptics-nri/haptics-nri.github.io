@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Optoforce",""]]});
+initSidebarItems({"struct":[["Optoforce","Controllable struct for the sensor"]]});

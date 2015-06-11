@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["wrapper",""]],"struct":[["Bluefox",""]]});
+initSidebarItems({"struct":[["Bluefox","Controllable struct for the camera"]],"mod":[["wrapper",""]]});

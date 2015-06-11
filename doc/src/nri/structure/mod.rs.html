@@ -91,6 +91,14 @@
 <span id="49">49</span>
 <span id="50">50</span>
 <span id="51">51</span>
+<span id="52">52</span>
+<span id="53">53</span>
+<span id="54">54</span>
+<span id="55">55</span>
+<span id="56">56</span>
+<span id="57">57</span>
+<span id="58">58</span>
+<span id="59">59</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! Service to capture frames from the Structure Sensor</span>
 
@@ -101,10 +109,18 @@
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>::<span class='ident'>Write</span>;
 <span class='kw'>use</span> <span class='ident'>super</span>::<span class='ident'>comms</span>::<span class='ident'>Controllable</span>;
 
+<span class='doccomment'>/// Controllable struct for the camera</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Structure</span> {
+    <span class='doccomment'>/// Private handle to the device</span>
     <span class='ident'>device</span>: <span class='ident'>wrapper</span>::<span class='ident'>Device</span>,
+
+    <span class='doccomment'>/// Private handle to the data stream</span>
     <span class='ident'>depth</span>: <span class='ident'>wrapper</span>::<span class='ident'>VideoStream</span>,
+
+    <span class='doccomment'>/// Time that setup() was last called (used for calculating frame rates)</span>
     <span class='ident'>start</span>: <span class='ident'>time</span>::<span class='ident'>Tm</span>,
+
+    <span class='doccomment'>/// Number of frames captured since setup() was last called (used for calculating frame rates)</span>
     <span class='ident'>i</span>: <span class='ident'>usize</span>,
 }
 

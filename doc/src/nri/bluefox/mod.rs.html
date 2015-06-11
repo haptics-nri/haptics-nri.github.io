@@ -83,6 +83,12 @@
 <span id="41">41</span>
 <span id="42">42</span>
 <span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! Service to capture frames from the mvBlueFOX3 camera</span>
 
@@ -93,9 +99,15 @@
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>::<span class='ident'>Write</span>;
 <span class='kw'>use</span> <span class='ident'>super</span>::<span class='ident'>comms</span>::<span class='ident'>Controllable</span>;
 
+<span class='doccomment'>/// Controllable struct for the camera</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Bluefox</span> {
+    <span class='doccomment'>/// Private device handle</span>
     <span class='ident'>device</span>: <span class='ident'>wrapper</span>::<span class='ident'>Device</span>,
+
+    <span class='doccomment'>/// Time that setup() was last called (used for calculating frame rates)</span>
     <span class='ident'>start</span>: <span class='ident'>time</span>::<span class='ident'>Tm</span>,
+
+    <span class='doccomment'>/// Number of frames captured since setup() was last called (used for calculating frame rates)</span>
     <span class='ident'>i</span>: <span class='ident'>usize</span>,
 }
 
