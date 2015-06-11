@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Bluefox",""]],"mod":[["wrapper",""]]});
+initSidebarItems({"mod":[["wrapper",""]],"struct":[["Bluefox",""]]});

@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["MultiSender","Multi-produce, multi-consumer manager. Hands out channels and holds onto the sending ends, and has methods for sending to one or all of them."]]});
+initSidebarItems({"struct":[["MultiSender","Multi-producer, multi-consumer manager. Hands out channels and holds onto the sending ends, and has methods for sending to one or all of them."]]});
