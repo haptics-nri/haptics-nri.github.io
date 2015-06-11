@@ -232,28 +232,28 @@
 <span class='doccomment'>//! - Run cargo doc in the NRI repo:</span>
 <span class='doccomment'>//!</span>
 <span class='doccomment'>//! ```text</span>
-<span class='doccomment'>//! nri$ cargo doc</span>
+<span class='doccomment'>//!     nri$ cargo doc</span>
 <span class='doccomment'>//! ```</span>
 <span class='doccomment'>//! - Now we need the rustdoc command for this crate.</span>
 <span class='doccomment'>//!</span>
-<span class='doccomment'>//! ```text</span>
+<span class='doccomment'>//! &lt;pre&gt;</span>
 <span class='doccomment'>//! nri$ touch src/main.rs</span>
 <span class='doccomment'>//! nri$ cargo doc -v | grep rustdoc | awk &quot;-FRunning &quot; &#39;{print substr($NF, 2, length($NF)-2)}&#39; &gt; cargo-doc-command</span>
-<span class='doccomment'>//! ```</span>
-<span class='doccomment'>//! - Edit &lt;tt&gt;cargo-doc-command&lt;/tt&gt; and add &lt;tt&gt;--no-defaults --passes &quot;collapse-docs&quot; --passes &quot;unindent-comments&quot;&lt;/tt&gt; after &lt;tt&gt;src/main.rs&lt;/tt&gt;. Then run it.</span>
+<span class='doccomment'>//! &lt;/pre&gt;</span>
+<span class='doccomment'>//! - Edit &lt;code&gt;cargo-doc-command&lt;/code&gt; and add &lt;code&gt;--no-defaults --passes &quot;collapse-docs&quot; --passes &quot;unindent-comments&quot;&lt;/code&gt; after &lt;code&gt;src/main.rs&lt;/code&gt;. Then run it.</span>
 <span class='doccomment'>//!</span>
-<span class='doccomment'>//! ```text</span>
+<span class='doccomment'>//! &lt;pre&gt;</span>
 <span class='doccomment'>//! nri$ source cargo-doc-command</span>
-<span class='doccomment'>//! ```</span>
-<span class='doccomment'>//! - Copy the docs to the Github Pages repo, commit, and push.</span>
+<span class='doccomment'>//! &lt;/pre&gt;</span>
+<span class='doccomment'>//! - You can now access the docs at &lt;code&gt;target/doc/nri/index.html&lt;/code&gt;. If you want them on the web: copy the docs to the Github Pages repo, commit, and push.</span>
 <span class='doccomment'>//!</span>
-<span class='doccomment'>//! ```text</span>
+<span class='doccomment'>//! &lt;pre&gt;</span>
 <span class='doccomment'>//! nri$ rsync -a target/doc ../haptics-nri.github.io</span>
 <span class='doccomment'>//! nri$ cd ../haptics-nri.github.io</span>
 <span class='doccomment'>//! haptics-nri.github.io$ git add doc</span>
 <span class='doccomment'>//! haptics-nri.github.io$ git commit -m &quot;cargo doc&quot;</span>
 <span class='doccomment'>//! haptics-nri.github.io$ git push</span>
-<span class='doccomment'>//! ```</span>
+<span class='doccomment'>//! &lt;/pre&gt;</span>
 <span class='doccomment'>//! - The docs are now live (after 30s or so) at http://haptics-nri.github.io/doc/nri.</span>
 <span class='doccomment'>//!</span>
 <span class='doccomment'>//! ## ... set up the wi-fi hotspot</span>
@@ -270,14 +270,14 @@
 <span class='doccomment'>//! 5. Go to the &quot;Wi-Fi Security&quot; tab and choose sane options.</span>
 <span class='doccomment'>//! 6. Go to the &quot;IPv4 Settings&quot; tab and set the Method to &quot;Shared to other computers&quot;.</span>
 <span class='doccomment'>//! 7. Click Save.</span>
-<span class='doccomment'>//! 8. Edit the file /etc/NetworkManager/system-connections/&lt;SSID&gt; and change</span>
-<span class='doccomment'>//!    &lt;tt&gt;mode=infrastructure&lt;/tt&gt; to &lt;tt&gt;mode=ap&lt;/tt&gt;.</span>
+<span class='doccomment'>//! 8. Edit the file &lt;code&gt;/etc/NetworkManager/system-connections/$SSID&lt;/code&gt; and change</span>
+<span class='doccomment'>//!    &lt;code&gt;mode=infrastructure&lt;/code&gt; to &lt;code&gt;mode=ap&lt;/code&gt;.</span>
 <span class='doccomment'>//! 9. Deactivate and reactivate Wi-Fi. Then you should be able to select the new SSID to</span>
-<span class='doccomment'>//!    &quot;connect&quot;. And then you should be able to connect from other devices!</span>
+<span class='doccomment'>//!    &quot;connect&quot; (meaning broadcast). And then you should be able to connect from other devices!</span>
 <span class='doccomment'>//!</span>
 <span class='doccomment'>//! Note that (obviously) when the NUC is running as a hotspot, it has no internet connection. I</span>
 <span class='doccomment'>//! tried to get DNS running, but I failed, so for now you have to use an IP address to access the</span>
-<span class='doccomment'>//! NUC. You can see what it chose by running &lt;tt&gt;ip a&lt;/tt&gt; -- it seems to like 10.42.0.1.</span>
+<span class='doccomment'>//! NUC. You can see what it chose by running &lt;code&gt;ip -f inet show wlan0&lt;/code&gt; -- it seems to like 10.42.0.1.</span>
 
 <span class='kw'>mod</span> <span class='ident'>web</span>;
 <span class='kw'>mod</span> <span class='ident'>structure</span>;

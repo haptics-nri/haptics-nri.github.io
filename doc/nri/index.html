@@ -57,34 +57,37 @@ everything.</p>
 <li>Run cargo doc in the NRI repo:</li>
 </ul>
 
-<pre><code class="language-text">nri$ cargo doc
+<pre><code class="language-text">    nri$ cargo doc
 </code></pre>
 
 <ul>
 <li>Now we need the rustdoc command for this crate.</li>
 </ul>
 
-<pre><code class="language-text">nri$ touch src/main.rs
-nri$ cargo doc -v | grep rustdoc | awk &quot;-FRunning &quot; &#39;{print substr($NF, 2, length($NF)-2)}&#39; &gt; cargo-doc-command
-</code></pre>
+<pre>
+nri$ touch src/main.rs
+nri$ cargo doc -v | grep rustdoc | awk "-FRunning " '{print substr($NF, 2, length($NF)-2)}' > cargo-doc-command
+</pre>
 
 <ul>
-<li>Edit <tt>cargo-doc-command</tt> and add <tt>--no-defaults --passes &quot;collapse-docs&quot; --passes &quot;unindent-comments&quot;</tt> after <tt>src/main.rs</tt>. Then run it.</li>
+<li>Edit <code>cargo-doc-command</code> and add <code>--no-defaults --passes &quot;collapse-docs&quot; --passes &quot;unindent-comments&quot;</code> after <code>src/main.rs</code>. Then run it.</li>
 </ul>
 
-<pre><code class="language-text">nri$ source cargo-doc-command
-</code></pre>
+<pre>
+nri$ source cargo-doc-command
+</pre>
 
 <ul>
-<li>Copy the docs to the Github Pages repo, commit, and push.</li>
+<li>You can now access the docs at <code>target/doc/nri/index.html</code>. If you want them on the web: copy the docs to the Github Pages repo, commit, and push.</li>
 </ul>
 
-<pre><code class="language-text">nri$ rsync -a target/doc ../haptics-nri.github.io
+<pre>
+nri$ rsync -a target/doc ../haptics-nri.github.io
 nri$ cd ../haptics-nri.github.io
 haptics-nri.github.io$ git add doc
-haptics-nri.github.io$ git commit -m &quot;cargo doc&quot;
+haptics-nri.github.io$ git commit -m "cargo doc"
 haptics-nri.github.io$ git push
-</code></pre>
+</pre>
 
 <ul>
 <li>The docs are now live (after 30s or so) at <a href="http://haptics-nri.github.io/doc/nri">http://haptics-nri.github.io/doc/nri</a>.</li>
@@ -105,15 +108,15 @@ it manually). Select the wireless card in the &quot;Device MAC address&quot; dro
 <li>Go to the &quot;Wi-Fi Security&quot; tab and choose sane options.</li>
 <li>Go to the &quot;IPv4 Settings&quot; tab and set the Method to &quot;Shared to other computers&quot;.</li>
 <li>Click Save.</li>
-<li>Edit the file /etc/NetworkManager/system-connections/<SSID> and change
-<tt>mode=infrastructure</tt> to <tt>mode=ap</tt>.</li>
+<li>Edit the file <code>/etc/NetworkManager/system-connections/$SSID</code> and change
+<code>mode=infrastructure</code> to <code>mode=ap</code>.</li>
 <li>Deactivate and reactivate Wi-Fi. Then you should be able to select the new SSID to
-&quot;connect&quot;. And then you should be able to connect from other devices!</li>
+&quot;connect&quot; (meaning broadcast). And then you should be able to connect from other devices!</li>
 </ol>
 
 <p>Note that (obviously) when the NUC is running as a hotspot, it has no internet connection. I
 tried to get DNS running, but I failed, so for now you have to use an IP address to access the
-NUC. You can see what it chose by running <tt>ip a</tt> -- it seems to like 10.42.0.1.</p>
+NUC. You can see what it chose by running <code>ip -f inet show wlan0</code> -- it seems to like 10.42.0.1.</p>
 </div><h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
 <table><tr><td><code>extern crate "std" as std;</code></td></tr><tr><td><code>extern crate log;</code></td></tr><tr><td><code>extern crate env_logger;</code></td></tr><tr><td><code>use std::prelude::<a class='mod' href='http://doc.rust-lang.org/nightly/std/prelude/v1/index.html' title='std::prelude::v1'>v1</a>::*;</code></td></tr><tr><td><code>use std::<a class='mod' href='http://doc.rust-lang.org/nightly/std/io/index.html' title='std::io'>io</a>;</code></td></tr><tr><td><code>use std::io::{<a class='trait' href='http://doc.rust-lang.org/nightly/std/io/trait.Write.html' title='std::io::Write'>Write</a>, <a class='trait' href='http://doc.rust-lang.org/nightly/std/io/trait.BufRead.html' title='std::io::BufRead'>BufRead</a>};</code></td></tr><tr><td><code>use std::ascii::<a class='trait' href='http://doc.rust-lang.org/nightly/std/ascii/trait.AsciiExt.html' title='std::ascii::AsciiExt'>AsciiExt</a>;</code></td></tr><tr><td><code>use std::<a class='mod' href='http://doc.rust-lang.org/nightly/core/ptr/index.html' title='core::ptr'>ptr</a>;</code></td></tr><tr><td><code>use std::<a class='mod' href='http://doc.rust-lang.org/nightly/std/thread/index.html' title='std::thread'>thread</a>;</code></td></tr><tr><td><code>use std::sync::mpsc::{<a class='struct' href='http://doc.rust-lang.org/nightly/std/sync/mpsc/struct.Receiver.html' title='std::sync::mpsc::Receiver'>Receiver</a>, <a class='enum' href='http://doc.rust-lang.org/nightly/std/sync/mpsc/enum.TryRecvError.html' title='std::sync::mpsc::TryRecvError'>TryRecvError</a>};</code></td></tr><tr><td><code>use std::process::<a class='struct' href='http://doc.rust-lang.org/nightly/std/process/struct.Command.html' title='std::process::Command'>Command</a>;</code></td></tr><tr><td><code>use mpmc::<a class='struct' href='../nri/mpmc/struct.MultiSender.html' title='nri::mpmc::MultiSender'>MultiSender</a>;</code></td></tr><tr><td><code>use comms::<a class='enum' href='../nri/comms/enum.Cmd.html' title='nri::comms::Cmd'>Cmd</a>;</code></td></tr><tr><td><code>use web::<a class='struct' href='../nri/web/struct.Web.html' title='nri::web::Web'>Web</a>;</code></td></tr><tr><td><code>use structure::<a class='struct' href='../nri/structure/struct.Structure.html' title='nri::structure::Structure'>Structure</a>;</code></td></tr><tr><td><code>use bluefox::<a class='struct' href='../nri/bluefox/struct.Bluefox.html' title='nri::bluefox::Bluefox'>Bluefox</a>;</code></td></tr><tr><td><code>use optoforce::<a class='struct' href='../nri/optoforce/struct.Optoforce.html' title='nri::optoforce::Optoforce'>Optoforce</a>;</code></td></tr></table><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
 <table>

@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["JsonRender",""],["JsonTruthy",""]],"struct":[["Context",""]]});
+initSidebarItems({"struct":[["Context",""]],"trait":[["JsonRender",""],["JsonTruthy",""]]});
