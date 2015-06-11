@@ -43,7 +43,7 @@
     <section id='main' class="content trait">
 <h1 class='fqn'><span class='in-band'>Trait <a href='../index.html'>nri</a>::<wbr><a href='index.html'>comms</a>::<wbr><a class='trait' href=''>Controllable</a><wbr></span><span class='out-of-band'><span id='render-detail'>
             <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
-        </span><a id='src-3848' href='../../src/nri/comms.rs.html#13-17'>[src]</a></span></h1>
+        </span><a id='src-3848' href='../../src/nri/comms.rs.html#13-34'>[src]</a></span></h1>
 <pre class='rust trait'>pub trait Controllable&lt;C&gt; {
     fn <a href='#tymethod.setup' class='fnname'>setup</a>() -&gt; C;
     fn <a href='#tymethod.step' class='fnname'>step</a>(&amp;mut self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a>;
@@ -52,7 +52,22 @@
 </div>
             <h2 id='required-methods'>Required Methods</h2>
             <div class='methods'>
-        <h3 id='tymethod.setup' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#tymethod.setup' class='fnname'>setup</a>() -&gt; C</code></h3><h3 id='tymethod.step' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#tymethod.step' class='fnname'>step</a>(&amp;mut self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h3><h3 id='tymethod.teardown' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#tymethod.teardown' class='fnname'>teardown</a>(&amp;mut self)</code></h3></div>
+        <h3 id='tymethod.setup' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#tymethod.setup' class='fnname'>setup</a>() -&gt; C</code></h3><div class='docblock'><p>Setup the service.</p>
+
+<p>Should initialize any necessary libraries and devices. May be called more than once, but
+teardown() will be called in between.</p>
+</div><h3 id='tymethod.step' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#tymethod.step' class='fnname'>step</a>(&amp;mut self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h3><div class='docblock'><p>Run one &quot;step&quot;.</p>
+
+<p>In the case of a device driver, this corresponds to gathering one frame or sample of data.</p>
+
+<p>Return true if we should wait for a command from the supervisor thread before calling
+step() again. Return false to call step() again right away (unless there is a pending
+command).</p>
+</div><h3 id='tymethod.teardown' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#tymethod.teardown' class='fnname'>teardown</a>(&amp;mut self)</code></h3><div class='docblock'><p>Tear down the service.</p>
+
+<p>Should shut down any necessary libraries or services. Either the program is exiting, or the
+service is just being paused (setup() could be called again).</p>
+</div></div>
         <h2 id='implementors'>Implementors</h2>
         <ul class='item-list' id='implementors-list'>
     <li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../../nri/comms/trait.Controllable.html' title='nri::comms::Controllable'>Controllable</a>&lt;<a class='struct' href='../../nri/web/struct.Web.html' title='nri::web::Web'>Web</a>&gt; for <a class='struct' href='../../nri/web/struct.Web.html' title='nri::web::Web'>Web</a></code></li>

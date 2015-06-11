@@ -102,6 +102,23 @@
 <span id="60">60</span>
 <span id="61">61</span>
 <span id="62">62</span>
+<span id="63">63</span>
+<span id="64">64</span>
+<span id="65">65</span>
+<span id="66">66</span>
+<span id="67">67</span>
+<span id="68">68</span>
+<span id="69">69</span>
+<span id="70">70</span>
+<span id="71">71</span>
+<span id="72">72</span>
+<span id="73">73</span>
+<span id="74">74</span>
+<span id="75">75</span>
+<span id="76">76</span>
+<span id="77">77</span>
+<span id="78">78</span>
+<span id="79">79</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! Utilities for communication between the supervisor thread and services</span>
 
@@ -116,8 +133,25 @@
 
 <span class='doccomment'>/// A service that can be setup and torn down based on commands from a higher power.</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Controllable</span><span class='op'>&lt;</span><span class='ident'>C</span><span class='op'>&gt;</span> {
+    <span class='doccomment'>/// Setup the service.</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// Should initialize any necessary libraries and devices. May be called more than once, but</span>
+    <span class='doccomment'>/// teardown() will be called in between.</span>
     <span class='kw'>fn</span> <span class='ident'>setup</span>() <span class='op'>-&gt;</span> <span class='ident'>C</span>;
+
+    <span class='doccomment'>/// Run one &quot;step&quot;.</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// In the case of a device driver, this corresponds to gathering one frame or sample of data.</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// Return true if we should wait for a command from the supervisor thread before calling</span>
+    <span class='doccomment'>/// step() again. Return false to call step() again right away (unless there is a pending</span>
+    <span class='doccomment'>/// command).</span>
     <span class='kw'>fn</span> <span class='ident'>step</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span>;
+
+    <span class='doccomment'>/// Tear down the service.</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// Should shut down any necessary libraries or services. Either the program is exiting, or the</span>
+    <span class='doccomment'>/// service is just being paused (setup() could be called again).</span>
     <span class='kw'>fn</span> <span class='ident'>teardown</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>);
 }
 
