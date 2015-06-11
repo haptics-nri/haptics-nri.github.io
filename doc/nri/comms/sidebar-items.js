@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["Controllable","A service that can be setup and torn down based on commands from a higher power."]],"fn":[["go",""]],"enum":[["Cmd",""]]});
+initSidebarItems({"fn":[["go",""]],"enum":[["Cmd",""]],"trait":[["Controllable","A service that can be setup and torn down based on commands from a higher power."]]});

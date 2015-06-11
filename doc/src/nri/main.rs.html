@@ -231,9 +231,9 @@
 <span class='doccomment'>//!</span>
 <span class='doccomment'>//! - Run cargo doc in the NRI repo:</span>
 <span class='doccomment'>//!</span>
-<span class='doccomment'>//! ```text</span>
+<span class='doccomment'>//! &lt;pre&gt; </span>
 <span class='doccomment'>//!     nri$ cargo doc</span>
-<span class='doccomment'>//! ```</span>
+<span class='doccomment'>//! &lt;/pre&gt;</span>
 <span class='doccomment'>//! - Now we need the rustdoc command for this crate.</span>
 <span class='doccomment'>//!</span>
 <span class='doccomment'>//! &lt;pre&gt;</span>
@@ -277,7 +277,7 @@
 <span class='doccomment'>//!</span>
 <span class='doccomment'>//! Note that (obviously) when the NUC is running as a hotspot, it has no internet connection. I</span>
 <span class='doccomment'>//! tried to get DNS running, but I failed, so for now you have to use an IP address to access the</span>
-<span class='doccomment'>//! NUC. You can see what it chose by running &lt;code&gt;ip -f inet show wlan0&lt;/code&gt; -- it seems to like 10.42.0.1.</span>
+<span class='doccomment'>//! NUC. You can see what it chose by running &lt;code&gt;hostname -I&lt;/code&gt; -- it seems to like 10.42.0.1.</span>
 
 <span class='kw'>mod</span> <span class='ident'>web</span>;
 <span class='kw'>mod</span> <span class='ident'>structure</span>;
