@@ -43,8 +43,12 @@
     <section id='main' class="content fn">
 <h1 class='fqn'><span class='in-band'>Function <a href='../index.html'>nri</a>::<wbr><a href='index.html'>comms</a>::<wbr><a class='fn' href=''>go</a><wbr></span><span class='out-of-band'><span id='render-detail'>
             <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
-        </span><a id='src-3865' href='../../src/nri/comms.rs.html#36-78'>[src]</a></span></h1>
-<pre class='rust fn'>pub fn go&lt;C: <a class='trait' href='../../nri/comms/trait.Controllable.html' title='nri::comms::Controllable'>Controllable</a>&lt;C&gt;&gt;(rx: <a class='struct' href='http://doc.rust-lang.org/nightly/std/sync/mpsc/struct.Receiver.html' title='std::sync::mpsc::Receiver'>Receiver</a>&lt;<a class='enum' href='../../nri/comms/enum.Cmd.html' title='nri::comms::Cmd'>Cmd</a>&gt;)</pre></section>
+        </span><a id='src-3865' href='../../src/nri/comms.rs.html#40-82'>[src]</a></span></h1>
+<pre class='rust fn'>pub fn go&lt;C: <a class='trait' href='../../nri/comms/trait.Controllable.html' title='nri::comms::Controllable'>Controllable</a>&lt;C&gt;&gt;(rx: <a class='struct' href='http://doc.rust-lang.org/nightly/std/sync/mpsc/struct.Receiver.html' title='std::sync::mpsc::Receiver'>Receiver</a>&lt;<a class='enum' href='../../nri/comms/enum.Cmd.html' title='nri::comms::Cmd'>Cmd</a>&gt;)</pre><div class='docblock'><p>Service driving function</p>
+
+<p>Runs in a loop receiving commands from th supervisor thread. Manages a Controllable instance,
+calling its setup()/step()/teardown() methods as necessary.</p>
+</div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
