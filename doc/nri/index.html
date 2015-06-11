@@ -43,40 +43,41 @@
     <section id='main' class="content mod">
 <h1 class='fqn'><span class='in-band'>Crate <a class='mod' href=''>nri</a><wbr></span><span class='out-of-band'><a href='stability.html'>[stability]</a> <span id='render-detail'>
             <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
-        </span><a id='src-0' href='../src/nri/main.rs.html#1-154'>[src]</a></span></h1>
+        </span><a id='src-0' href='../src/nri/main.rs.html#1-178'>[src]</a></span></h1>
 <div class='docblock'><p>This crate contains all the software used to run the sensing rig. It&#39;s designed to run on the
 Intel NUC in the rig operator&#39;s backpack. There are driver wrappers for each sensor, a
 supervisor that runs each of those in its own thread, plus CLI and web interfaces to control
 everything.</p>
 
-<p><strong>HOWTO</strong></p>
-
+<h1 id="how-to..." class='section-header'><a
+                           href="#how-to...">How to...</a></h1>
+<h2 id="...-generate-this-documentation" class='section-header'><a
+                           href="#...-generate-this-documentation">... generate this documentation</a></h2>
 <ul>
-<li>How to generate this documentation
-
-<ol>
 <li>Run cargo doc in the NRI repo:</li>
-</ol></li>
 </ul>
 
 <pre><code class="language-text">nri$ cargo doc
 </code></pre>
-<pre id='rust-example-rendered' class='rust '>
-<span class='number'>2.</span> <span class='ident'>Now</span> <span class='ident'>we</span> <span class='ident'>need</span> <span class='ident'>the</span> <span class='ident'>rustdoc</span> <span class='ident'>command</span> <span class='kw'>for</span> <span class='ident'>this</span> <span class='kw'>crate</span>.
-</pre>
+
+<ul>
+<li>Now we need the rustdoc command for this crate.</li>
+</ul>
 
 <pre><code class="language-text">nri$ touch src/main.rs
 nri$ cargo doc -v | grep rustdoc | awk &quot;-FRunning &quot; &#39;{print substr($NF, 2, length($NF)-2)}&#39; &gt; cargo-doc-command
 </code></pre>
-<pre id='rust-example-rendered' class='rust '>
-<span class='number'>3.</span> <span class='ident'>Edit</span> <span class='op'>&lt;</span><span class='ident'>tt</span><span class='op'>&gt;</span><span class='ident'>cargo</span><span class='op'>-</span><span class='ident'>doc</span><span class='op'>-</span><span class='ident'>command</span><span class='op'>&lt;</span><span class='op'>/</span><span class='ident'>tt</span><span class='op'>&gt;</span> <span class='ident'>and</span> <span class='ident'>add</span> <span class='op'>&lt;</span><span class='ident'>tt</span><span class='op'>&gt;</span><span class='op'>-</span><span class='op'>-</span><span class='ident'>no</span><span class='op'>-</span><span class='ident'>defaults</span> <span class='op'>-</span><span class='op'>-</span><span class='ident'>passes</span> <span class='string'>&quot;collapse-docs&quot;</span> <span class='op'>-</span><span class='op'>-</span><span class='ident'>passes</span> <span class='string'>&quot;unindent-comments&quot;</span><span class='op'>&lt;</span><span class='op'>/</span><span class='ident'>tt</span><span class='op'>&gt;</span> <span class='ident'>after</span> <span class='op'>&lt;</span><span class='ident'>tt</span><span class='op'>&gt;</span><span class='ident'>src</span><span class='op'>/</span><span class='ident'>main</span>.<span class='ident'>rs</span><span class='op'>&lt;</span><span class='op'>/</span><span class='ident'>tt</span><span class='op'>&gt;</span>. <span class='ident'>Then</span> <span class='ident'>run</span> <span class='ident'>it</span>.
-</pre>
+
+<ul>
+<li>Edit <tt>cargo-doc-command</tt> and add <tt>--no-defaults --passes &quot;collapse-docs&quot; --passes &quot;unindent-comments&quot;</tt> after <tt>src/main.rs</tt>. Then run it.</li>
+</ul>
 
 <pre><code class="language-text">nri$ source cargo-doc-command
 </code></pre>
-<pre id='rust-example-rendered' class='rust '>
-<span class='number'>4.</span> <span class='ident'>Copy</span> <span class='ident'>the</span> <span class='ident'>docs</span> <span class='ident'>to</span> <span class='ident'>the</span> <span class='ident'>Github</span> <span class='ident'>Pages</span> <span class='ident'>repo</span>, <span class='ident'>commit</span>, <span class='ident'>and</span> <span class='ident'>push</span>.
-</pre>
+
+<ul>
+<li>Copy the docs to the Github Pages repo, commit, and push.</li>
+</ul>
 
 <pre><code class="language-text">nri$ rsync -a target/doc ../haptics-nri.github.io
 nri$ cd ../haptics-nri.github.io
@@ -84,9 +85,35 @@ haptics-nri.github.io$ git add doc
 haptics-nri.github.io$ git commit -m &quot;cargo doc&quot;
 haptics-nri.github.io$ git push
 </code></pre>
-<pre id='rust-example-rendered' class='rust '>
-<span class='number'>5.</span> <span class='ident'>The</span> <span class='ident'>docs</span> <span class='ident'>are</span> <span class='ident'>now</span> <span class='ident'>live</span> (<span class='ident'>after</span> <span class='number'>30s</span> <span class='ident'>or</span> <span class='ident'>so</span>) <span class='ident'>at</span> <span class='ident'>http</span>:<span class='comment'>//haptics-nri.github.io/doc/nri.</span>
-</pre>
+
+<ul>
+<li>The docs are now live (after 30s or so) at <a href="http://haptics-nri.github.io/doc/nri">http://haptics-nri.github.io/doc/nri</a>.</li>
+</ul>
+
+<h2 id="...-set-up-the-wi-fi-hotspot" class='section-header'><a
+                           href="#...-set-up-the-wi-fi-hotspot">... set up the wi-fi hotspot</a></h2>
+<p>I followed the instructions <a href="http://ubuntuhandbook.org/index.php/2014/09/3-ways-create-wifi-hotspot-ubuntu/">here</a> to create a Wi-Fi hotspot to which Android devices can connect. Unity&#39;s built in network manager can almost, but not quite, do it. You need to create the network in the manager and then go edit the file to change it from Infrastructure Mode to AP Mode (which is not an option in the GUI -- you can select Ad-hoc Mode, but Android won&#39;t connect to that).</p>
+
+<p>Shortened instructions:</p>
+
+<ol>
+<li>Click on the network icon in the system tray. Select &quot;Edit connections...&quot;.</li>
+<li>Click &quot;Add&quot;.</li>
+<li>Choose &quot;Wi-Fi&quot; for the type and click Create.</li>
+<li>Make up an SSID. Leave the type as &quot;Infrastructure&quot; (it doesn&#39;t matter, since we&#39;ll change
+it manually). Select the wireless card in the &quot;Device MAC address&quot; dropdown.</li>
+<li>Go to the &quot;Wi-Fi Security&quot; tab and choose sane options.</li>
+<li>Go to the &quot;IPv4 Settings&quot; tab and set the Method to &quot;Shared to other computers&quot;.</li>
+<li>Click Save.</li>
+<li>Edit the file /etc/NetworkManager/system-connections/<SSID> and change
+<tt>mode=infrastructure</tt> to <tt>mode=ap</tt>.</li>
+<li>Deactivate and reactivate Wi-Fi. Then you should be able to select the new SSID to
+&quot;connect&quot;. And then you should be able to connect from other devices!</li>
+</ol>
+
+<p>Note that (obviously) when the NUC is running as a hotspot, it has no internet connection. I
+tried to get DNS running, but I failed, so for now you have to use an IP address to access the
+NUC. You can see what it chose by running <tt>ip a</tt> -- it seems to like 10.42.0.1.</p>
 </div><h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
 <table><tr><td><code>extern crate "std" as std;</code></td></tr><tr><td><code>extern crate log;</code></td></tr><tr><td><code>extern crate env_logger;</code></td></tr><tr><td><code>use std::prelude::<a class='mod' href='http://doc.rust-lang.org/nightly/std/prelude/v1/index.html' title='std::prelude::v1'>v1</a>::*;</code></td></tr><tr><td><code>use std::<a class='mod' href='http://doc.rust-lang.org/nightly/std/io/index.html' title='std::io'>io</a>;</code></td></tr><tr><td><code>use std::io::{<a class='trait' href='http://doc.rust-lang.org/nightly/std/io/trait.Write.html' title='std::io::Write'>Write</a>, <a class='trait' href='http://doc.rust-lang.org/nightly/std/io/trait.BufRead.html' title='std::io::BufRead'>BufRead</a>};</code></td></tr><tr><td><code>use std::ascii::<a class='trait' href='http://doc.rust-lang.org/nightly/std/ascii/trait.AsciiExt.html' title='std::ascii::AsciiExt'>AsciiExt</a>;</code></td></tr><tr><td><code>use std::<a class='mod' href='http://doc.rust-lang.org/nightly/core/ptr/index.html' title='core::ptr'>ptr</a>;</code></td></tr><tr><td><code>use std::<a class='mod' href='http://doc.rust-lang.org/nightly/std/thread/index.html' title='std::thread'>thread</a>;</code></td></tr><tr><td><code>use std::sync::mpsc::{<a class='struct' href='http://doc.rust-lang.org/nightly/std/sync/mpsc/struct.Receiver.html' title='std::sync::mpsc::Receiver'>Receiver</a>, <a class='enum' href='http://doc.rust-lang.org/nightly/std/sync/mpsc/enum.TryRecvError.html' title='std::sync::mpsc::TryRecvError'>TryRecvError</a>};</code></td></tr><tr><td><code>use std::process::<a class='struct' href='http://doc.rust-lang.org/nightly/std/process/struct.Command.html' title='std::process::Command'>Command</a>;</code></td></tr><tr><td><code>use mpmc::<a class='struct' href='../nri/mpmc/struct.MultiSender.html' title='nri::mpmc::MultiSender'>MultiSender</a>;</code></td></tr><tr><td><code>use comms::<a class='enum' href='../nri/comms/enum.Cmd.html' title='nri::comms::Cmd'>Cmd</a>;</code></td></tr><tr><td><code>use web::<a class='struct' href='../nri/web/struct.Web.html' title='nri::web::Web'>Web</a>;</code></td></tr><tr><td><code>use structure::<a class='struct' href='../nri/structure/struct.Structure.html' title='nri::structure::Structure'>Structure</a>;</code></td></tr><tr><td><code>use bluefox::<a class='struct' href='../nri/bluefox/struct.Bluefox.html' title='nri::bluefox::Bluefox'>Bluefox</a>;</code></td></tr><tr><td><code>use optoforce::<a class='struct' href='../nri/optoforce/struct.Optoforce.html' title='nri::optoforce::Optoforce'>Optoforce</a>;</code></td></tr></table><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
 <table>
