@@ -123,15 +123,23 @@
 <span id="81">81</span>
 <span id="82">82</span>
 <span id="83">83</span>
+<span id="84">84</span>
+<span id="85">85</span>
+<span id="86">86</span>
+<span id="87">87</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! Utilities for communication between the supervisor thread and services</span>
 
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>sync</span>::<span class='ident'>mpsc</span>::{<span class='ident'>Receiver</span>, <span class='ident'>TryRecvError</span>};
 
+<span class='doccomment'>/// Commands sent from the supervisor thread to services</span>
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>enum</span> <span class='ident'>Cmd</span> {
+    <span class='doccomment'>/// Start the service</span>
     <span class='ident'>Start</span>,
+    <span class='doccomment'>/// Stop the service (but keep the thread running)</span>
     <span class='ident'>Stop</span> ,
+    <span class='doccomment'>/// Stop the service and kill the thread</span>
     <span class='ident'>Quit</span> ,
 }
 
