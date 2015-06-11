@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Service","Service descriptor"],["Web","Controll"]],"fn":[["index",""],["relpath",""]]});
+initSidebarItems({"fn":[["index",""],["relpath",""]],"struct":[["Service","Service descriptor"],["Web","Controll"]]});
