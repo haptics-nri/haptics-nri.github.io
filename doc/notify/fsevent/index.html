@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `fsevent` mod in crate `notify`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, fsevent">
+
+    <title>notify::fsevent - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <section class="sidebar">
+        
+        <p class='location'><a href='../index.html'>notify</a></p><script>window.sidebarCurrent = {name: 'fsevent', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
+    </section>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press 'S' to search, '?' for more options..."
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content mod">
+<h1 class='fqn'><span class='in-band'>Module <a href='../index.html'>notify</a>::<wbr><a class='mod' href=''>fsevent</a><wbr></span><span class='out-of-band'><span id='render-detail'>
+            <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
+        </span><a id='src-16' href='../../src/notify/fsevent.rs.html#1-378'>[src]</a></span></h1>
+<h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table>
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='struct' href='struct.FsEventWatcher.html'
+                               title='notify::fsevent::FsEventWatcher'>FsEventWatcher</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='struct' href='struct.StreamFlags.html'
+                               title='notify::fsevent::StreamFlags'>StreamFlags</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                </table><h2 id='constants' class='section-header'><a href="#constants">Constants</a></h2>
+<table>
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='constant' href='constant.HISTORY_DONE.html'
+                               title='notify::fsevent::HISTORY_DONE'>HISTORY_DONE</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='constant' href='constant.IDS_WRAPPED.html'
+                               title='notify::fsevent::IDS_WRAPPED'>IDS_WRAPPED</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='constant' href='constant.ITEM_CHANGE_OWNER.html'
+                               title='notify::fsevent::ITEM_CHANGE_OWNER'>ITEM_CHANGE_OWNER</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='constant' href='constant.ITEM_CREATED.html'
+                               title='notify::fsevent::ITEM_CREATED'>ITEM_CREATED</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='constant' href='constant.ITEM_FINDER_INFO_MOD.html'
+                               title='notify::fsevent::ITEM_FINDER_INFO_MOD'>ITEM_FINDER_INFO_MOD</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='constant' href='constant.ITEM_INODE_META_MOD.html'
+                               title='notify::fsevent::ITEM_INODE_META_MOD'>ITEM_INODE_META_MOD</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='constant' href='constant.ITEM_IS_DIR.html'
+                               title='notify::fsevent::ITEM_IS_DIR'>ITEM_IS_DIR</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='constant' href='constant.ITEM_IS_FILE.html'
+                               title='notify::fsevent::ITEM_IS_FILE'>ITEM_IS_FILE</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='constant' href='constant.ITEM_IS_SYMLIMK.html'
+                               title='notify::fsevent::ITEM_IS_SYMLIMK'>ITEM_IS_SYMLIMK</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='constant' href='constant.ITEM_MODIFIED.html'
+                               title='notify::fsevent::ITEM_MODIFIED'>ITEM_MODIFIED</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='constant' href='constant.ITEM_REMOVED.html'
+                               title='notify::fsevent::ITEM_REMOVED'>ITEM_REMOVED</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='constant' href='constant.ITEM_RENAMED.html'
+                               title='notify::fsevent::ITEM_RENAMED'>ITEM_RENAMED</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='constant' href='constant.ITEM_XATTR_MOD.html'
+                               title='notify::fsevent::ITEM_XATTR_MOD'>ITEM_XATTR_MOD</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='constant' href='constant.KERNEL_DROPPED.html'
+                               title='notify::fsevent::KERNEL_DROPPED'>KERNEL_DROPPED</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='constant' href='constant.MOUNT.html'
+                               title='notify::fsevent::MOUNT'>MOUNT</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='constant' href='constant.MUST_SCAN_SUB_DIRS.html'
+                               title='notify::fsevent::MUST_SCAN_SUB_DIRS'>MUST_SCAN_SUB_DIRS</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='constant' href='constant.NONE.html'
+                               title='notify::fsevent::NONE'>NONE</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='constant' href='constant.NULL.html'
+                               title='notify::fsevent::NULL'>NULL</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='constant' href='constant.ROOT_CHANGED.html'
+                               title='notify::fsevent::ROOT_CHANGED'>ROOT_CHANGED</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='constant' href='constant.UNMOUNT.html'
+                               title='notify::fsevent::UNMOUNT'>UNMOUNT</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='constant' href='constant.USER_DROPPED.html'
+                               title='notify::fsevent::USER_DROPPED'>USER_DROPPED</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                </table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+<table>
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='fn' href='fn.CFArrayRemoveValueAtIndex.html'
+                               title='notify::fsevent::CFArrayRemoveValueAtIndex'>CFArrayRemoveValueAtIndex</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='fn' href='fn.CFRunLoopStop.html'
+                               title='notify::fsevent::CFRunLoopStop'>CFRunLoopStop</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='fn' href='fn.CFShowStr.html'
+                               title='notify::fsevent::CFShowStr'>CFShowStr</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='fn' href='fn.CFStringCompare.html'
+                               title='notify::fsevent::CFStringCompare'>CFStringCompare</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='fn' href='fn.CFStringGetCStringPtr.html'
+                               title='notify::fsevent::CFStringGetCStringPtr'>CFStringGetCStringPtr</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='fn' href='fn.FSEventStreamInvalidate.html'
+                               title='notify::fsevent::FSEventStreamInvalidate'>FSEventStreamInvalidate</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='fn' href='fn.FSEventStreamRelease.html'
+                               title='notify::fsevent::FSEventStreamRelease'>FSEventStreamRelease</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='fn' href='fn.FSEventStreamUnscheduleFromRunLoop.html'
+                               title='notify::fsevent::FSEventStreamUnscheduleFromRunLoop'>FSEventStreamUnscheduleFromRunLoop</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='fn' href='fn.callback.html'
+                               title='notify::fsevent::callback'>callback</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='fn' href='fn.is_api_available.html'
+                               title='notify::fsevent::is_api_available'>is_api_available</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                </table><h2 id='types' class='section-header'><a href="#types">Type Definitions</a></h2>
+<table>
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='type' href='type.CFComparisonResult.html'
+                               title='notify::fsevent::CFComparisonResult'>CFComparisonResult</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='type' href='type.CFStringCompareFlags.html'
+                               title='notify::fsevent::CFStringCompareFlags'>CFStringCompareFlags</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='type' href='type.CFStringEncoding.html'
+                               title='notify::fsevent::CFStringEncoding'>CFStringEncoding</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                </table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <div id="help" class="hidden">
+        <div class="shortcuts">
+            <h1>Keyboard shortcuts</h1>
+            <dl>
+                <dt>?</dt>
+                <dd>Show this help dialog</dd>
+                <dt>S</dt>
+                <dd>Focus the search field</dd>
+                <dt>&larrb;</dt>
+                <dd>Move up in search results</dd>
+                <dt>&rarrb;</dt>
+                <dd>Move down in search results</dd>
+                <dt>&#9166;</dt>
+                <dd>Go to active search result</dd>
+            </dl>
+        </div>
+        <div class="infos">
+            <h1>Search tricks</h1>
+            <p>
+                Prefix searches with a type followed by a colon (e.g.
+                <code>fn:</code>) to restrict the search to a given type.
+            </p>
+            <p>
+                Accepted types are: <code>fn</code>, <code>mod</code>,
+                <code>struct</code>, <code>enum</code>,
+                <code>trait</code>, <code>typedef</code> (or
+                <code>tdef</code>).
+            </p>
+        </div>
+    </div>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "notify";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script async src="../../search-index.js"></script>
+</body>
+</html>

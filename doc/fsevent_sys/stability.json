@@ -1,0 +1,1 @@
+{"name":"fsevent_sys","counts":{"deprecated":0,"unstable":0,"stable":0,"unmarked":85},"submodules":[{"name":"core_foundation","counts":{"deprecated":0,"unstable":0,"stable":0,"unmarked":62},"submodules":[]},{"name":"fsevent","counts":{"deprecated":0,"unstable":0,"stable":0,"unmarked":22},"submodules":[]}]}

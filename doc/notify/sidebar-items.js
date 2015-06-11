@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["new",""]],"enum":[["Error",""]],"trait":[["Watcher",""]],"struct":[["Event",""]],"mod":[["fsevent",""],["null",""],["op",""]],"type":[["RecommendedWatcher",""]]});
