@@ -195,10 +195,6 @@
 <span id="153">153</span>
 <span id="154">154</span>
 <span id="155">155</span>
-<span id="156">156</span>
-<span id="157">157</span>
-<span id="158">158</span>
-<span id="159">159</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! This crate contains all the software used to run the sensing rig. It&#39;s designed to run on the</span>
 <span class='doccomment'>//! Intel NUC in the rig operator&#39;s backpack. There are driver wrappers for each sensor, a</span>
@@ -213,20 +209,17 @@
 <span class='doccomment'>//! ```text</span>
 <span class='doccomment'>//! nri$ cargo doc</span>
 <span class='doccomment'>//! ```</span>
-<span class='doccomment'>//!</span>
 <span class='doccomment'>//!     2. Now we need the rustdoc command for this crate.</span>
 <span class='doccomment'>//!</span>
 <span class='doccomment'>//! ```text</span>
 <span class='doccomment'>//! nri$ touch src/main.rs</span>
 <span class='doccomment'>//! nri$ cargo doc -v | grep rustdoc | awk &quot;-FRunning &quot; &#39;{print substr($NF, 2, length($NF)-2)}&#39; &gt; cargo-doc-command</span>
 <span class='doccomment'>//! ```</span>
-<span class='doccomment'>//!</span>
 <span class='doccomment'>//!     3. Edit &lt;tt&gt;cargo-doc-command&lt;/tt&gt; and add &lt;tt&gt;--no-defaults --passes &quot;collapse-docs&quot; --passes &quot;unindent-comments&quot;&lt;/tt&gt; after &lt;tt&gt;src/main.rs&lt;/tt&gt;. Then run it.</span>
 <span class='doccomment'>//!</span>
 <span class='doccomment'>//! ```text</span>
 <span class='doccomment'>//! nri$ source cargo-doc-command</span>
 <span class='doccomment'>//! ```</span>
-<span class='doccomment'>//!</span>
 <span class='doccomment'>//!     4. Copy the docs to the Github Pages repo, commit, and push.</span>
 <span class='doccomment'>//!</span>
 <span class='doccomment'>//! ```text</span>
@@ -236,7 +229,6 @@
 <span class='doccomment'>//! haptics-nri.github.io$ git commit -m &quot;cargo doc&quot;</span>
 <span class='doccomment'>//! haptics-nri.github.io$ git push</span>
 <span class='doccomment'>//! ```</span>
-<span class='doccomment'>//!</span>
 <span class='doccomment'>//!     5. The docs are now live (after 30s or so) at http://haptics-nri.github.io/doc/nri.</span>
 
 <span class='kw'>mod</span> <span class='ident'>web</span>;
