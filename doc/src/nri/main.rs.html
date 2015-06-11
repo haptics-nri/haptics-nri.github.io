@@ -188,12 +188,12 @@
 <span class='doccomment'>//! - [mpmc](mpmc): &quot;Multi-producer multi-consumer&quot; struct that manages a Vec of std::sync::mpsc</span>
 <span class='doccomment'>//! channnels (written by panicbit)</span>
 
-<span class='kw'>mod</span> <span class='ident'>web</span>;
-<span class='kw'>mod</span> <span class='ident'>structure</span>;
-<span class='kw'>mod</span> <span class='ident'>bluefox</span>;
-<span class='kw'>mod</span> <span class='ident'>optoforce</span>;
-<span class='kw'>mod</span> <span class='ident'>mpmc</span>;
-<span class='kw'>mod</span> <span class='ident'>comms</span>;
+<span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>web</span>;
+<span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>structure</span>;
+<span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>bluefox</span>;
+<span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>optoforce</span>;
+<span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>comms</span>;
+<span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>mpmc</span>;
 
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>::{<span class='ident'>Write</span>, <span class='ident'>BufRead</span>};
