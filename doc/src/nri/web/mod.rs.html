@@ -132,10 +132,17 @@
 <span id="90">90</span>
 <span id="91">91</span>
 <span id="92">92</span>
+<span id="93">93</span>
+<span id="94">94</span>
+<span id="95">95</span>
+<span id="96">96</span>
+<span id="97">97</span>
+<span id="98">98</span>
+<span id="99">99</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! Web interface to view and control running services</span>
 <span class='doccomment'>//!</span>
-<span class='doccomment'>//! Uses the Iron web framework, Handlebars templates, and Twitter Boostrap</span>
+<span class='doccomment'>//! Uses the Iron web framework, Handlebars templates, and Twitter Boostrap.</span>
 
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>iron</span>;
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>handlebars_iron</span> <span class='kw'>as</span> <span class='ident'>hbs</span>;
@@ -156,6 +163,12 @@
 <span class='kw'>use</span> <span class='self'>self</span>::<span class='ident'>mount</span>::<span class='ident'>Mount</span>;
 <span class='kw'>use</span> <span class='self'>self</span>::<span class='ident'>hyper</span>::<span class='ident'>server</span>::<span class='ident'>Listening</span>;
 
+<span class='doccomment'>/// Service descriptor</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// Unlike the one in main.rs, this descriptor only needs to contain things that are useful for</span>
+<span class='doccomment'>/// display in the interface. However, they should probably be unified (TODO). The &quot;web descriptor&quot;</span>
+<span class='doccomment'>/// could be just a subfield of the main.rs service descriptor, and then those could get passed in</span>
+<span class='doccomment'>/// here (somehow).</span>
 <span class='kw'>struct</span> <span class='ident'>Service</span> {
     <span class='ident'>name</span>: <span class='ident'>String</span>,
 }
@@ -191,6 +204,7 @@
     <span class='prelude-val'>Ok</span>(<span class='ident'>resp</span>)
 }
 
+<span class='doccomment'>/// Controll</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Web</span> {
     <span class='ident'>listening</span>: <span class='ident'>Listening</span>,
 }

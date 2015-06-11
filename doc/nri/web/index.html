@@ -43,15 +43,43 @@
     <section id='main' class="content mod">
 <h1 class='fqn'><span class='in-band'>Module <a href='../index.html'>nri</a>::<wbr><a class='mod' href=''>web</a><wbr></span><span class='out-of-band'><span id='render-detail'>
             <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
-        </span><a id='src-4' href='../../src/nri/web/mod.rs.html#1-91'>[src]</a></span></h1>
+        </span><a id='src-4' href='../../src/nri/web/mod.rs.html#1-98'>[src]</a></span></h1>
 <div class='docblock'><p>Web interface to view and control running services</p>
 
-<p>Uses the Iron web framework, Handlebars templates, and Twitter Boostrap</p>
-</div><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<p>Uses the Iron web framework, Handlebars templates, and Twitter Boostrap.</p>
+</div><h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
+<table><tr><td><code>extern crate iron;</code></td></tr><tr><td><code>extern crate "handlebars_iron" as hbs;</code></td></tr><tr><td><code>extern crate staticfile;</code></td></tr><tr><td><code>extern crate mount;</code></td></tr><tr><td><code>extern crate hyper;</code></td></tr><tr><td><code>extern crate "rustc_serialize" as serialize;</code></td></tr><tr><td><code>use std::prelude::<a class='mod' href='http://doc.rust-lang.org/nightly/std/prelude/v1/index.html' title='std::prelude::v1'>v1</a>::*;</code></td></tr><tr><td><code>use std::path::<a class='struct' href='http://doc.rust-lang.org/nightly/std/path/struct.Path.html' title='std::path::Path'>Path</a>;</code></td></tr><tr><td><code>use std::sync::<a class='struct' href='http://doc.rust-lang.org/nightly/alloc/arc/struct.Arc.html' title='alloc::arc::Arc'>Arc</a>;</code></td></tr><tr><td><code>use std::collections::<a class='struct' href='http://doc.rust-lang.org/nightly/collections/btree/map/struct.BTreeMap.html' title='collections::btree::map::BTreeMap'>BTreeMap</a>;</code></td></tr><tr><td><code>use super::comms::<a class='trait' href='../../nri/comms/trait.Controllable.html' title='nri::comms::Controllable'>Controllable</a>;</code></td></tr><tr><td><code>use self::<a class='mod'
+                                            href='./iron/index.html'>iron</a>::<a class='mod' href='../../iron/prelude/index.html' title='iron::prelude'>prelude</a>::*;</code></td></tr><tr><td><code>use self::<a class='mod'
+                                            href='./iron/index.html'>iron</a>::<a class='mod' href='../../iron/status/index.html' title='iron::status'>status</a>;</code></td></tr><tr><td><code>use self::hbs::{<a class='struct' href='../../handlebars_iron/middleware/struct.Template.html' title='handlebars_iron::middleware::Template'>Template</a>, <a class='struct' href='../../handlebars_iron/middleware/struct.HandlebarsEngine.html' title='handlebars_iron::middleware::HandlebarsEngine'>HandlebarsEngine</a>, <a class='trait' href='../../handlebars_iron/watch/trait.Watchable.html' title='handlebars_iron::watch::Watchable'>Watchable</a>};</code></td></tr><tr><td><code>use self::serialize::json::{<a class='trait' href='../../rustc_serialize/json/trait.ToJson.html' title='rustc_serialize::json::ToJson'>ToJson</a>, <a class='enum' href='../../rustc_serialize/json/enum.Json.html' title='rustc_serialize::json::Json'>Json</a>};</code></td></tr><tr><td><code>use self::<a class='mod'
+                                            href='./staticfile/index.html'>staticfile</a>::<a class='struct' href='../../staticfile/static_handler/struct.Static.html' title='staticfile::static_handler::Static'>Static</a>;</code></td></tr><tr><td><code>use self::<a class='mod'
+                                            href='./mount/index.html'>mount</a>::<a class='struct' href='../../mount/mount/struct.Mount.html' title='mount::mount::Mount'>Mount</a>;</code></td></tr><tr><td><code>use self::<a class='mod'
+                                            href='./hyper/index.html'>hyper</a>::<a class='mod'
+                                            href='./hyper/server/index.html'>server</a>::<a class='struct' href='../../hyper/server/struct.Listening.html' title='hyper::server::Listening'>Listening</a>;</code></td></tr></table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
 <table>
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='struct' href='struct.Service.html'
+                               title='nri::web::Service'>Service</a></td>
+                        <td class='docblock short'><p>Service descriptor</p>
+</td>
+                    </tr>
+                
                     <tr>
                         <td><a class='stability Unmarked' title='No stability level'></a><a class='struct' href='struct.Web.html'
                                title='nri::web::Web'>Web</a></td>
+                        <td class='docblock short'><p>Controll</p>
+</td>
+                    </tr>
+                </table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+<table>
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='fn' href='fn.index.html'
+                               title='nri::web::index'>index</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='fn' href='fn.relpath.html'
+                               title='nri::web::relpath'>relpath</a></td>
                         <td class='docblock short'></td>
                     </tr>
                 </table></section>

@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Structure",""]]});
+initSidebarItems({"struct":[["Structure",""]],"mod":[["wrapper",""]]});
