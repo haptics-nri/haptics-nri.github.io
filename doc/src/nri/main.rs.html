@@ -171,12 +171,12 @@
 <span class='doccomment'>//! supervisor that runs each of those in its own thread, plus CLI and web interfaces to control</span>
 <span class='doccomment'>//! everything.</span>
 
-<span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>web</span>;
-<span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>structure</span>;
-<span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>bluefox</span>;
-<span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>optoforce</span>;
-<span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>comms</span>;
-<span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>mpmc</span>;
+<span class='kw'>mod</span> <span class='ident'>web</span>;
+<span class='kw'>mod</span> <span class='ident'>structure</span>;
+<span class='kw'>mod</span> <span class='ident'>bluefox</span>;
+<span class='kw'>mod</span> <span class='ident'>optoforce</span>;
+<span class='kw'>mod</span> <span class='ident'>comms</span>;
+<span class='kw'>mod</span> <span class='ident'>mpmc</span>;
 
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>::{<span class='ident'>Write</span>, <span class='ident'>BufRead</span>};
@@ -222,7 +222,7 @@
 }
 
 <span class='doccomment'>/// Service descriptor</span>
-<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Service</span> {
+<span class='kw'>struct</span> <span class='ident'>Service</span> {
     <span class='ident'>name</span>: <span class='ident'>String</span>,
     <span class='ident'>thread</span>: <span class='ident'>thread</span>::<span class='ident'>JoinHandle</span><span class='op'>&lt;</span>()<span class='op'>&gt;</span>,
 }
@@ -231,7 +231,7 @@
 <span class='doccomment'>///</span>
 <span class='doccomment'>/// TODO split out CLI interface into a mod</span>
 <span class='doccomment'>/// TODO actually use the logging infrastructure</span>
-<span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>main</span>() {
+<span class='kw'>fn</span> <span class='ident'>main</span>() {
     <span class='ident'>env_logger</span>::<span class='ident'>init</span>().<span class='ident'>unwrap</span>();
 
     <span class='macro'>info</span><span class='macro'>!</span>(<span class='string'>&quot;Hello, world!&quot;</span>);
