@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["bluefox",""],["comms","COMMS DOCS HERE"],["mpmc","thanks \"panicbit\" on irc.mozilla.org #rust"],["optoforce",""],["structure",""],["web",""]]});
+initSidebarItems({"mod":[["bluefox",""],["comms","COMMS DOCS HERE"],["mpmc","thanks \"panicbit\" on irc.mozilla.org #rust"],["optoforce",""],["structure",""],["web","Web interface to view and control running services Uses the Iron web framework, Handlebars templates, and Twitter Boostrap"]]});

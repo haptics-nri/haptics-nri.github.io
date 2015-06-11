@@ -43,24 +43,11 @@
     <section id='main' class="content mod">
 <h1 class='fqn'><span class='in-band'>Crate <a class='mod' href=''>nri</a><wbr></span><span class='out-of-band'><a href='stability.html'>[stability]</a> <span id='render-detail'>
             <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
-        </span><a id='src-0' href='../src/nri/main.rs.html#1-130'>[src]</a></span></h1>
+        </span><a id='src-0' href='../src/nri/main.rs.html#1-120'>[src]</a></span></h1>
 <div class='docblock'><p>This crate contains all the software used to run the sensing rig. It&#39;s designed to run on the
 Intel NUC in the rig operator&#39;s backpack. There are driver wrappers for each sensor, a
 supervisor that runs each of those in its own thread, plus CLI and web interfaces to control
 everything.</p>
-
-<p>Internal modules are:</p>
-
-<ul>
-<li><a href="web">web</a>: The web interface</li>
-<li><a href="structure">structure</a>: driver wrapper for the Structure Sensor</li>
-<li><a href="bluefox">bluefox</a>: driver wrapper for the mvBlueFOX3 camera</li>
-<li><a href="optoforce">optoforce</a>: driver wrapper for the OptoForce sensor</li>
-<li><a href="comms">comms</a>: structs and fns used for communication between the supervisor and child
-threads</li>
-<li><a href="mpmc">mpmc</a>: &quot;Multi-producer multi-consumer&quot; struct that manages a Vec of std::sync::mpsc
-channnels (written by panicbit)</li>
-</ul>
 </div><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
 <table>
                     <tr>
@@ -98,7 +85,9 @@ channnels (written by panicbit)</li>
                     <tr>
                         <td><a class='stability Unmarked' title='No stability level'></a><a class='mod' href='web/index.html'
                                title='nri::web'>web</a></td>
-                        <td class='docblock short'></td>
+                        <td class='docblock short'><p>Web interface to view and control running services
+Uses the Iron web framework, Handlebars templates, and Twitter Boostrap</p>
+</td>
                     </tr>
                 </table></section>
     <section id='search' class="content hidden"></section>
