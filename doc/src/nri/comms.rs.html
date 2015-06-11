@@ -101,6 +101,7 @@
 <span id="59">59</span>
 <span id="60">60</span>
 <span id="61">61</span>
+<span id="62">62</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! COMMS DOCS HERE</span>
 
@@ -113,6 +114,7 @@
     <span class='ident'>Quit</span> ,
 }
 
+<span class='doccomment'>/// A service that can be setup and torn down based on commands from a higher power.</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Controllable</span><span class='op'>&lt;</span><span class='ident'>C</span><span class='op'>&gt;</span> {
     <span class='kw'>fn</span> <span class='ident'>setup</span>() <span class='op'>-&gt;</span> <span class='ident'>C</span>;
     <span class='kw'>fn</span> <span class='ident'>step</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span>;
