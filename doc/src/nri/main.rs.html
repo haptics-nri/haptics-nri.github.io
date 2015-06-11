@@ -155,7 +155,37 @@
 <span id="113">113</span>
 <span id="114">114</span>
 <span id="115">115</span>
+<span id="116">116</span>
+<span id="117">117</span>
+<span id="118">118</span>
+<span id="119">119</span>
+<span id="120">120</span>
+<span id="121">121</span>
+<span id="122">122</span>
+<span id="123">123</span>
+<span id="124">124</span>
+<span id="125">125</span>
+<span id="126">126</span>
+<span id="127">127</span>
+<span id="128">128</span>
+<span id="129">129</span>
+<span id="130">130</span>
 </pre><pre class='rust '>
+<span class='doccomment'>//! This crate contains all the software used to run the sensing rig. It&#39;s designed to run on the</span>
+<span class='doccomment'>//! Intel NUC in the rig operator&#39;s backpack. There are driver wrappers for each sensor, a</span>
+<span class='doccomment'>//! supervisor that runs each of those in its own thread, plus CLI and web interfaces to control</span>
+<span class='doccomment'>//! everything.</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! Internal modules are:</span>
+<span class='doccomment'>//! - [web](web): The web interface</span>
+<span class='doccomment'>//! - [structure](structure): driver wrapper for the Structure Sensor</span>
+<span class='doccomment'>//! - [bluefox](bluefox): driver wrapper for the mvBlueFOX3 camera</span>
+<span class='doccomment'>//! - [optoforce](optoforce): driver wrapper for the OptoForce sensor</span>
+<span class='doccomment'>//! - [comms](comms): structs and fns used for communication between the supervisor and child</span>
+<span class='doccomment'>//! threads</span>
+<span class='doccomment'>//! - [mpmc](mpmc): &quot;Multi-producer multi-consumer&quot; struct that manages a Vec of std::sync::mpsc</span>
+<span class='doccomment'>//! channnels (written by panicbit)</span>
+
 <span class='kw'>mod</span> <span class='ident'>web</span>;
 <span class='kw'>mod</span> <span class='ident'>structure</span>;
 <span class='kw'>mod</span> <span class='ident'>bluefox</span>;
