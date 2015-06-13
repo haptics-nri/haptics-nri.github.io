@@ -99,6 +99,7 @@
 <span id="57">57</span>
 <span id="58">58</span>
 <span id="59">59</span>
+<span id="60">60</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! Service to capture frames from the Structure Sensor</span>
 
@@ -107,7 +108,8 @@
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>time</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fs</span>::<span class='ident'>File</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>::<span class='ident'>Write</span>;
-<span class='kw'>use</span> <span class='ident'>super</span>::<span class='ident'>comms</span>::<span class='ident'>Controllable</span>;
+<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>sync</span>::<span class='ident'>mpsc</span>::{<span class='ident'>channel</span>, <span class='ident'>Sender</span>};
+<span class='kw'>use</span> <span class='ident'>super</span>::<span class='ident'>comms</span>::{<span class='ident'>Controllable</span>, <span class='ident'>CmdFrom</span>};
 
 <span class='doccomment'>/// Controllable struct for the camera</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Structure</span> {
@@ -137,7 +139,7 @@
         <span class='ident'>Structure</span> { <span class='ident'>device</span>: <span class='ident'>device</span>, <span class='ident'>depth</span>: <span class='ident'>depth</span>, <span class='ident'>start</span>: <span class='ident'>start</span>, <span class='ident'>i</span>: <span class='ident'>i</span>}
     }
 
-    <span class='kw'>fn</span> <span class='ident'>step</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span> {
+    <span class='kw'>fn</span> <span class='ident'>step</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>tx</span>: <span class='ident'>Sender</span><span class='op'>&lt;</span><span class='ident'>CmdFrom</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span> {
         <span class='self'>self</span>.<span class='ident'>i</span> <span class='op'>+=</span> <span class='number'>1</span>;
 
         <span class='kw'>let</span> <span class='ident'>frame</span> <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>depth</span>.<span class='ident'>readFrame</span>().<span class='ident'>unwrap</span>();

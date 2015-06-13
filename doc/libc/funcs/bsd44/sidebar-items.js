@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["getdtablesize",""],["ioctl",""],["madvise",""],["mincore",""]]});
+initSidebarItems({"fn":[["getdtablesize",""],["ioctl",""],["madvise",""],["mincore",""],["realpath",""],["sysctl",""],["sysctlbyname",""],["sysctlnametomib",""]]});

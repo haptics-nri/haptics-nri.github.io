@@ -43,7 +43,7 @@
     <section id='main' class="content struct">
 <h1 class='fqn'><span class='in-band'>Struct <a href='../index.html'>nri</a>::<wbr><a href='index.html'>mpmc</a>::<wbr><a class='struct' href=''>MultiSender</a><wbr></span><span class='out-of-band'><span id='render-detail'>
             <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
-        </span><a id='src-3990' href='../../src/nri/mpmc.rs.html#11-14'>[src]</a></span></h1>
+        </span><a id='src-4514' href='../../src/nri/mpmc.rs.html#11-14'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct MultiSender&lt;T: <a class='trait' href='http://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a>&gt; {
     clients: <a class='struct' href='http://doc.rust-lang.org/nightly/alloc/arc/struct.Arc.html' title='alloc::arc::Arc'>Arc</a>&lt;<a class='struct' href='http://doc.rust-lang.org/nightly/std/sync/mutex/struct.Mutex.html' title='std::sync::mutex::Mutex'>Mutex</a>&lt;<a class='struct' href='http://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='http://doc.rust-lang.org/nightly/std/sync/mpsc/struct.Sender.html' title='std::sync::mpsc::Sender'>Sender</a>&lt;T&gt;&gt;&gt;&gt;,
 }</pre><div class='docblock'><p>Multi-producer, multi-consumer manager. Hands out channels and holds onto the sending ends, and

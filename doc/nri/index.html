@@ -43,7 +43,7 @@
     <section id='main' class="content mod">
 <h1 class='fqn'><span class='in-band'>Crate <a class='mod' href=''>nri</a><wbr></span><span class='out-of-band'><a href='stability.html'>[stability]</a> <span id='render-detail'>
             <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
-        </span><a id='src-0' href='../src/nri/main.rs.html#1-177'>[src]</a></span></h1>
+        </span><a id='src-0' href='../src/nri/main.rs.html#1-171'>[src]</a></span></h1>
 <div class='docblock'><p>This crate contains all the software used to run the sensing rig. It&#39;s designed to run on the
 Intel NUC in the rig operator&#39;s backpack. There are driver wrappers for each sensor, a
 supervisor that runs each of those in its own thread, plus CLI and web interfaces to control
@@ -118,12 +118,19 @@ it manually). Select the wireless card in the &quot;Device MAC address&quot; dro
 tried to get DNS running, but I failed, so for now you have to use an IP address to access the
 NUC. You can see what it chose by running <code>hostname -I</code> -- it seems to like 10.42.0.1.</p>
 </div><h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
-<table><tr><td><code>extern crate "std" as std;</code></td></tr><tr><td><code>extern crate log;</code></td></tr><tr><td><code>extern crate env_logger;</code></td></tr><tr><td><code>use std::prelude::<a class='mod' href='http://doc.rust-lang.org/nightly/std/prelude/v1/index.html' title='std::prelude::v1'>v1</a>::*;</code></td></tr><tr><td><code>use std::<a class='mod' href='http://doc.rust-lang.org/nightly/std/io/index.html' title='std::io'>io</a>;</code></td></tr><tr><td><code>use std::io::{<a class='trait' href='http://doc.rust-lang.org/nightly/std/io/trait.Write.html' title='std::io::Write'>Write</a>, <a class='trait' href='http://doc.rust-lang.org/nightly/std/io/trait.BufRead.html' title='std::io::BufRead'>BufRead</a>};</code></td></tr><tr><td><code>use std::ascii::<a class='trait' href='http://doc.rust-lang.org/nightly/std/ascii/trait.AsciiExt.html' title='std::ascii::AsciiExt'>AsciiExt</a>;</code></td></tr><tr><td><code>use std::<a class='mod' href='http://doc.rust-lang.org/nightly/core/ptr/index.html' title='core::ptr'>ptr</a>;</code></td></tr><tr><td><code>use std::<a class='mod' href='http://doc.rust-lang.org/nightly/std/thread/index.html' title='std::thread'>thread</a>;</code></td></tr><tr><td><code>use std::sync::mpsc::{<a class='struct' href='http://doc.rust-lang.org/nightly/std/sync/mpsc/struct.Receiver.html' title='std::sync::mpsc::Receiver'>Receiver</a>, <a class='enum' href='http://doc.rust-lang.org/nightly/std/sync/mpsc/enum.TryRecvError.html' title='std::sync::mpsc::TryRecvError'>TryRecvError</a>};</code></td></tr><tr><td><code>use std::process::<a class='struct' href='http://doc.rust-lang.org/nightly/std/process/struct.Command.html' title='std::process::Command'>Command</a>;</code></td></tr><tr><td><code>use mpmc::<a class='struct' href='../nri/mpmc/struct.MultiSender.html' title='nri::mpmc::MultiSender'>MultiSender</a>;</code></td></tr><tr><td><code>use comms::<a class='enum' href='../nri/comms/enum.Cmd.html' title='nri::comms::Cmd'>Cmd</a>;</code></td></tr><tr><td><code>use web::<a class='struct' href='../nri/web/struct.Web.html' title='nri::web::Web'>Web</a>;</code></td></tr><tr><td><code>use structure::<a class='struct' href='../nri/structure/struct.Structure.html' title='nri::structure::Structure'>Structure</a>;</code></td></tr><tr><td><code>use bluefox::<a class='struct' href='../nri/bluefox/struct.Bluefox.html' title='nri::bluefox::Bluefox'>Bluefox</a>;</code></td></tr><tr><td><code>use optoforce::<a class='struct' href='../nri/optoforce/struct.Optoforce.html' title='nri::optoforce::Optoforce'>Optoforce</a>;</code></td></tr></table><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
+<table><tr><td><code>extern crate "std" as std;</code></td></tr><tr><td><code>extern crate log;</code></td></tr><tr><td><code>extern crate env_logger;</code></td></tr><tr><td><code>use std::prelude::<a class='mod' href='http://doc.rust-lang.org/nightly/std/prelude/v1/index.html' title='std::prelude::v1'>v1</a>::*;</code></td></tr><tr><td><code>use std::<a class='mod' href='http://doc.rust-lang.org/nightly/std/io/index.html' title='std::io'>io</a>;</code></td></tr><tr><td><code>use std::io::{<a class='trait' href='http://doc.rust-lang.org/nightly/std/io/trait.Write.html' title='std::io::Write'>Write</a>, <a class='trait' href='http://doc.rust-lang.org/nightly/std/io/trait.BufRead.html' title='std::io::BufRead'>BufRead</a>};</code></td></tr><tr><td><code>use std::ascii::<a class='trait' href='http://doc.rust-lang.org/nightly/std/ascii/trait.AsciiExt.html' title='std::ascii::AsciiExt'>AsciiExt</a>;</code></td></tr><tr><td><code>use std::<a class='mod' href='http://doc.rust-lang.org/nightly/core/ptr/index.html' title='core::ptr'>ptr</a>;</code></td></tr><tr><td><code>use std::<a class='mod' href='http://doc.rust-lang.org/nightly/std/thread/index.html' title='std::thread'>thread</a>;</code></td></tr><tr><td><code>use std::sync::mpsc::{<a class='fn' href='http://doc.rust-lang.org/nightly/std/sync/mpsc/fn.channel.html' title='std::sync::mpsc::channel'>channel</a>, <a class='struct' href='http://doc.rust-lang.org/nightly/std/sync/mpsc/struct.Sender.html' title='std::sync::mpsc::Sender'>Sender</a>, <a class='struct' href='http://doc.rust-lang.org/nightly/std/sync/mpsc/struct.Receiver.html' title='std::sync::mpsc::Receiver'>Receiver</a>, <a class='enum' href='http://doc.rust-lang.org/nightly/std/sync/mpsc/enum.TryRecvError.html' title='std::sync::mpsc::TryRecvError'>TryRecvError</a>};</code></td></tr><tr><td><code>use std::process::<a class='struct' href='http://doc.rust-lang.org/nightly/std/process/struct.Command.html' title='std::process::Command'>Command</a>;</code></td></tr><tr><td><code>use mpmc::<a class='struct' href='../nri/mpmc/struct.MultiSender.html' title='nri::mpmc::MultiSender'>MultiSender</a>;</code></td></tr><tr><td><code>use comms::{<a class='enum' href='../nri/comms/enum.CmdTo.html' title='nri::comms::CmdTo'>CmdTo</a>, <a class='enum' href='../nri/comms/enum.CmdFrom.html' title='nri::comms::CmdFrom'>CmdFrom</a>};</code></td></tr><tr><td><code>use cli::<a class='struct' href='../nri/cli/struct.CLI.html' title='nri::cli::CLI'>CLI</a>;</code></td></tr><tr><td><code>use web::<a class='struct' href='../nri/web/struct.Web.html' title='nri::web::Web'>Web</a>;</code></td></tr><tr><td><code>use structure::<a class='struct' href='../nri/structure/struct.Structure.html' title='nri::structure::Structure'>Structure</a>;</code></td></tr><tr><td><code>use bluefox::<a class='struct' href='../nri/bluefox/struct.Bluefox.html' title='nri::bluefox::Bluefox'>Bluefox</a>;</code></td></tr><tr><td><code>use optoforce::<a class='struct' href='../nri/optoforce/struct.Optoforce.html' title='nri::optoforce::Optoforce'>Optoforce</a>;</code></td></tr></table><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
 <table>
                     <tr>
                         <td><a class='stability Unmarked' title='No stability level'></a><a class='mod' href='bluefox/index.html'
                                title='nri::bluefox'>bluefox</a></td>
                         <td class='docblock short'><p>Service to capture frames from the mvBlueFOX3 camera</p>
+</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='mod' href='cli/index.html'
+                               title='nri::cli'>cli</a></td>
+                        <td class='docblock short'><p>CLI interface to view and control running services</p>
 </td>
                     </tr>
                 
@@ -176,6 +183,30 @@ NUC. You can see what it chose by running <code>hostname -I</code> -- it seems t
                                title='nri::main'>main</a></td>
                         <td class='docblock short'><p>Main function that does everything</p>
 </td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='fn' href='fn.send_to.html'
+                               title='nri::send_to'>send_to</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='fn' href='fn.start.html'
+                               title='nri::start'>start</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='fn' href='fn.stop.html'
+                               title='nri::stop'>stop</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='fn' href='fn.stop_all.html'
+                               title='nri::stop_all'>stop_all</a></td>
+                        <td class='docblock short'></td>
                     </tr>
                 </table></section>
     <section id='search' class="content hidden"></section>

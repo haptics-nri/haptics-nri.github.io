@@ -43,10 +43,10 @@
     <section id='main' class="content trait">
 <h1 class='fqn'><span class='in-band'>Trait <a href='../index.html'>nri</a>::<wbr><a href='index.html'>comms</a>::<wbr><a class='trait' href=''>Controllable</a><wbr></span><span class='out-of-band'><span id='render-detail'>
             <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
-        </span><a id='src-3848' href='../../src/nri/comms.rs.html#19-40'>[src]</a></span></h1>
+        </span><a id='src-118' href='../../src/nri/comms.rs.html#32-53'>[src]</a></span></h1>
 <pre class='rust trait'>pub trait Controllable&lt;C&gt; {
     fn <a href='#tymethod.setup' class='fnname'>setup</a>() -&gt; C;
-    fn <a href='#tymethod.step' class='fnname'>step</a>(&amp;mut self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a>;
+    fn <a href='#tymethod.step' class='fnname'>step</a>(&amp;mut self, <a class='struct' href='http://doc.rust-lang.org/nightly/std/sync/mpsc/struct.Sender.html' title='std::sync::mpsc::Sender'>Sender</a>&lt;<a class='enum' href='../../nri/comms/enum.CmdFrom.html' title='nri::comms::CmdFrom'>CmdFrom</a>&gt;) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a>;
     fn <a href='#tymethod.teardown' class='fnname'>teardown</a>(&amp;mut self);
 }</pre><div class='docblock'><p>A service that can be setup and torn down based on commands from a higher power.</p>
 </div>
@@ -56,7 +56,7 @@
 
 <p>Should initialize any necessary libraries and devices. May be called more than once, but
 teardown() will be called in between.</p>
-</div><h3 id='tymethod.step' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#tymethod.step' class='fnname'>step</a>(&amp;mut self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h3><div class='docblock'><p>Run one &quot;step&quot;.</p>
+</div><h3 id='tymethod.step' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#tymethod.step' class='fnname'>step</a>(&amp;mut self, <a class='struct' href='http://doc.rust-lang.org/nightly/std/sync/mpsc/struct.Sender.html' title='std::sync::mpsc::Sender'>Sender</a>&lt;<a class='enum' href='../../nri/comms/enum.CmdFrom.html' title='nri::comms::CmdFrom'>CmdFrom</a>&gt;) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h3><div class='docblock'><p>Run one &quot;step&quot;.</p>
 
 <p>In the case of a device driver, this corresponds to gathering one frame or sample of data.</p>
 
@@ -70,7 +70,8 @@ service is just being paused (setup() could be called again).</p>
 </div></div>
         <h2 id='implementors'>Implementors</h2>
         <ul class='item-list' id='implementors-list'>
-    <li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../../nri/comms/trait.Controllable.html' title='nri::comms::Controllable'>Controllable</a>&lt;<a class='struct' href='../../nri/web/struct.Web.html' title='nri::web::Web'>Web</a>&gt; for <a class='struct' href='../../nri/web/struct.Web.html' title='nri::web::Web'>Web</a></code></li>
+    <li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../../nri/comms/trait.Controllable.html' title='nri::comms::Controllable'>Controllable</a>&lt;<a class='struct' href='../../nri/cli/struct.CLI.html' title='nri::cli::CLI'>CLI</a>&gt; for <a class='struct' href='../../nri/cli/struct.CLI.html' title='nri::cli::CLI'>CLI</a></code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../../nri/comms/trait.Controllable.html' title='nri::comms::Controllable'>Controllable</a>&lt;<a class='struct' href='../../nri/web/struct.Web.html' title='nri::web::Web'>Web</a>&gt; for <a class='struct' href='../../nri/web/struct.Web.html' title='nri::web::Web'>Web</a></code></li>
 <li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../../nri/comms/trait.Controllable.html' title='nri::comms::Controllable'>Controllable</a>&lt;<a class='struct' href='../../nri/structure/struct.Structure.html' title='nri::structure::Structure'>Structure</a>&gt; for <a class='struct' href='../../nri/structure/struct.Structure.html' title='nri::structure::Structure'>Structure</a></code></li>
 <li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../../nri/comms/trait.Controllable.html' title='nri::comms::Controllable'>Controllable</a>&lt;<a class='struct' href='../../nri/bluefox/struct.Bluefox.html' title='nri::bluefox::Bluefox'>Bluefox</a>&gt; for <a class='struct' href='../../nri/bluefox/struct.Bluefox.html' title='nri::bluefox::Bluefox'>Bluefox</a></code></li>
 <li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../../nri/comms/trait.Controllable.html' title='nri::comms::Controllable'>Controllable</a>&lt;<a class='struct' href='../../nri/optoforce/struct.Optoforce.html' title='nri::optoforce::Optoforce'>Optoforce</a>&gt; for <a class='struct' href='../../nri/optoforce/struct.Optoforce.html' title='nri::optoforce::Optoforce'>Optoforce</a></code></li>

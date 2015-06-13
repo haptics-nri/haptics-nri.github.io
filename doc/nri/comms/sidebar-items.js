@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["Controllable","A service that can be setup and torn down based on commands from a higher power."]],"fn":[["go","Service driving function"]],"enum":[["Cmd","Commands sent from the supervisor thread to services"]]});
+initSidebarItems({"trait":[["Controllable","A service that can be setup and torn down based on commands from a higher power."]],"fn":[["go","Service driving function"]],"enum":[["CmdFrom","Commands sent from services up to the supervisor thread"],["CmdTo","Commands sent from the supervisor thread to services"]]});

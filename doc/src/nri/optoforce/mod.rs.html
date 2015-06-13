@@ -61,10 +61,12 @@
 <span id="19">19</span>
 <span id="20">20</span>
 <span id="21">21</span>
+<span id="22">22</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! Service to read data from the OptoForce sensor</span>
 
-<span class='kw'>use</span> <span class='ident'>super</span>::<span class='ident'>comms</span>::<span class='ident'>Controllable</span>;
+<span class='kw'>use</span> <span class='ident'>super</span>::<span class='ident'>comms</span>::{<span class='ident'>Controllable</span>, <span class='ident'>CmdFrom</span>};
+<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>sync</span>::<span class='ident'>mpsc</span>::{<span class='ident'>channel</span>, <span class='ident'>Sender</span>};
 
 <span class='doccomment'>/// Controllable struct for the sensor</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Optoforce</span>;
@@ -74,7 +76,7 @@
         <span class='ident'>Optoforce</span>
     }
 
-    <span class='kw'>fn</span> <span class='ident'>step</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span> {
+    <span class='kw'>fn</span> <span class='ident'>step</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>tx</span>: <span class='ident'>Sender</span><span class='op'>&lt;</span><span class='ident'>CmdFrom</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span> {
         <span class='boolval'>true</span>
     }
 
