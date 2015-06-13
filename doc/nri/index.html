@@ -43,7 +43,7 @@
     <section id='main' class="content mod">
 <h1 class='fqn'><span class='in-band'>Crate <a class='mod' href=''>nri</a><wbr></span><span class='out-of-band'><a href='stability.html'>[stability]</a> <span id='render-detail'>
             <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
-        </span><a id='src-0' href='../src/nri/main.rs.html#1-171'>[src]</a></span></h1>
+        </span><a id='src-0' href='../src/nri/main.rs.html#1-179'>[src]</a></span></h1>
 <div class='docblock'><p>This crate contains all the software used to run the sensing rig. It&#39;s designed to run on the
 Intel NUC in the rig operator&#39;s backpack. There are driver wrappers for each sensor, a
 supervisor that runs each of those in its own thread, plus CLI and web interfaces to control
@@ -82,15 +82,25 @@ nri$ source cargo-doc-command
 </ul>
 
 <pre>
+nri$ pushd ../haptics-nri.github.io
+haptics-nri.github.io$ git pull
+haptics-nri.github.io$ popd
 nri$ rsync -a target/doc ../haptics-nri.github.io
-nri$ cd ../haptics-nri.github.io
+nri$ pushd ../haptics-nri.github.io
 haptics-nri.github.io$ git add doc
 haptics-nri.github.io$ git commit -m "cargo doc"
 haptics-nri.github.io$ git push
+haptics-nri.github.io$ popd
 </pre>
 
 <ul>
 <li>The docs are now live (after 30s or so) at <a href="http://haptics-nri.github.io/doc/nri">http://haptics-nri.github.io/doc/nri</a>.</li>
+</ul>
+
+<h2 id="...-lint-this-code" class='section-header'><a
+                           href="#...-lint-this-code">... lint this code</a></h2>
+<ul>
+<li>The script <code>clippy.sh</code> modifies Cargo.toml and src/main.rs to include <a href="https://crates.io/crates/clippy">rust-clippy</a>, changes the toolchain to nightly (using <a href="https://github.com/brson/multirust">multirust</a>), runs <code>cargo run</code> to generate all the lint warnings, and then switches everything back.</li>
 </ul>
 
 <h2 id="...-set-up-the-wi-fi-hotspot" class='section-header'><a
