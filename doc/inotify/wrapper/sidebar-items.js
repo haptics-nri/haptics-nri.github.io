@@ -1,1 +1,1 @@
-initSidebarItems({"type":[["Watch",""]],"struct":[["Event",""],["INotify",""]]});
+initSidebarItems({"struct":[["Event",""],["INotify",""]],"type":[["Watch",""]]});

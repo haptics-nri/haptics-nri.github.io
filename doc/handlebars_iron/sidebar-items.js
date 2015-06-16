@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["HandlebarsEngine",""],["Template",""]],"trait":[["Watchable",""]]});
+initSidebarItems({"trait":[["Watchable",""]],"struct":[["HandlebarsEngine",""],["Template",""]]});

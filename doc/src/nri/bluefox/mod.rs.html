@@ -113,7 +113,7 @@
     <span class='ident'>i</span>: <span class='ident'>usize</span>,
 }
 
-<span class='kw'>impl</span> <span class='ident'>Controllable</span><span class='op'>&lt;</span><span class='ident'>Bluefox</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>Bluefox</span> {
+<span class='kw'>impl</span> <span class='ident'>Controllable</span> <span class='kw'>for</span> <span class='ident'>Bluefox</span> {
     <span class='kw'>fn</span> <span class='ident'>setup</span>() <span class='op'>-&gt;</span> <span class='ident'>Bluefox</span> {
         <span class='kw'>let</span> <span class='ident'>device</span> <span class='op'>=</span> <span class='ident'>wrapper</span>::<span class='ident'>Device</span>::<span class='ident'>new</span>().<span class='ident'>unwrap</span>();
         <span class='comment'>//device.request_reset();</span>

@@ -183,12 +183,12 @@
 }
 
 <span class='doccomment'>/// A service that can be setup and torn down based on commands from a higher power.</span>
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Controllable</span><span class='op'>&lt;</span><span class='ident'>C</span><span class='op'>&gt;</span> {
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Controllable</span> {
     <span class='doccomment'>/// Setup the service.</span>
     <span class='doccomment'>///</span>
     <span class='doccomment'>/// Should initialize any necessary libraries and devices. May be called more than once, but</span>
     <span class='doccomment'>/// teardown() will be called in between.</span>
-    <span class='kw'>fn</span> <span class='ident'>setup</span>() <span class='op'>-&gt;</span> <span class='ident'>C</span>;
+    <span class='kw'>fn</span> <span class='ident'>setup</span>() <span class='op'>-&gt;</span> <span class='kw'>Self</span>;
 
     <span class='doccomment'>/// Run one &quot;step&quot;.</span>
     <span class='doccomment'>///</span>
@@ -219,7 +219,7 @@
 <span class='doccomment'>///</span>
 <span class='doccomment'>/// Runs in a loop receiving commands from th supervisor thread. Manages a Controllable instance,</span>
 <span class='doccomment'>/// calling its setup()/step()/teardown() methods as necessary.</span>
-<span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>go</span><span class='op'>&lt;</span><span class='ident'>C</span>: <span class='ident'>Controllable</span><span class='op'>&lt;</span><span class='ident'>C</span><span class='op'>&gt;&gt;</span>(<span class='ident'>rx</span>: <span class='ident'>Receiver</span><span class='op'>&lt;</span><span class='ident'>CmdTo</span><span class='op'>&gt;</span>, <span class='ident'>tx</span>: <span class='ident'>Sender</span><span class='op'>&lt;</span><span class='ident'>CmdFrom</span><span class='op'>&gt;</span>) {
+<span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>go</span><span class='op'>&lt;</span><span class='ident'>C</span>: <span class='ident'>Controllable</span><span class='op'>&gt;</span>(<span class='ident'>rx</span>: <span class='ident'>Receiver</span><span class='op'>&lt;</span><span class='ident'>CmdTo</span><span class='op'>&gt;</span>, <span class='ident'>tx</span>: <span class='ident'>Sender</span><span class='op'>&lt;</span><span class='ident'>CmdFrom</span><span class='op'>&gt;</span>) {
     <span class='kw'>loop</span> {
         <span class='kw'>match</span> <span class='ident'>rx</span>.<span class='ident'>recv</span>() {
             <span class='prelude-val'>Ok</span>(<span class='ident'>cmd</span>) <span class='op'>=&gt;</span> <span class='kw'>match</span> <span class='ident'>cmd</span> {
