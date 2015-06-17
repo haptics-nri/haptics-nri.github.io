@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="API documentation for the Rust `DMR_Close` fn in crate `nri`.">
-    <meta name="keywords" content="rust, rustlang, rust-lang, DMR_Close">
+    <meta name="description" content="API documentation for the Rust `control` fn in crate `nri`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, control">
 
-    <title>nri::bluefox::wrapper::DMR_Close - Rust</title>
+    <title>nri::web::control - Rust</title>
 
-    <link rel="stylesheet" type="text/css" href="../../../main.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
 
     
     
@@ -26,7 +26,7 @@
 
     <section class="sidebar">
         
-        <p class='location'><a href='../../index.html'>nri</a>::<wbr><a href='../index.html'>bluefox</a>::<wbr><a href='index.html'>wrapper</a></p><script>window.sidebarCurrent = {name: 'DMR_Close', ty: 'fn', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+        <p class='location'><a href='../index.html'>nri</a>::<wbr><a href='index.html'>web</a></p><script>window.sidebarCurrent = {name: 'control', ty: 'fn', relpath: ''};</script><script defer src="sidebar-items.js"></script>
     </section>
 
     <nav class="sub">
@@ -41,10 +41,11 @@
     </nav>
 
     <section id='main' class="content fn">
-<h1 class='fqn'><span class='in-band'><a href='../../index.html'>nri</a>::<wbr><a href='../index.html'>bluefox</a>::<wbr><a href='index.html'>wrapper</a>::<wbr><a class='fn' href=''>DMR_Close</a><wbr></span><span class='out-of-band'><span id='render-detail'>
+<h1 class='fqn'><span class='in-band'>Function <a href='../index.html'>nri</a>::<wbr><a href='index.html'>web</a>::<wbr><a class='fn' href=''>control</a><wbr></span><span class='out-of-band'><span id='render-detail'>
             <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
-        </span><a id='src-4007' href='../../../src/nri/bluefox/wrapper.rs.html#141'>[src]</a></span></h1>
-<pre class='rust fn'>unsafe extern fn DMR_Close() -&gt; <a class='enum' href='../../../nri/bluefox/wrapper/enum.TDMR_ERROR.html' title='nri::bluefox::wrapper::TDMR_ERROR'>TDMR_ERROR</a></pre></section>
+        </span><a id='src-846' href='../../src/nri/web/mod.rs.html#76-99'>[src]</a></span></h1>
+<pre class='rust fn'>fn control(tx: <a class='struct' href='http://doc.rust-lang.org/nightly/std/sync/mpsc/struct.Sender.html' title='std::sync::mpsc::Sender'>Sender</a>&lt;<a class='enum' href='../../nri/comms/enum.CmdFrom.html' title='nri::comms::CmdFrom'>CmdFrom</a>&gt;) -&gt; <a class='struct' href='http://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html' title='alloc::boxed::Box'>Box</a>&lt;<a class='trait' href='../../iron/middleware/trait.Handler.html' title='iron::middleware::Handler'>Handler</a>&gt;</pre><div class='docblock'><p>Handler for starting/stopping a service</p>
+</div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
@@ -83,13 +84,13 @@
     
 
     <script>
-        window.rootPath = "../../../";
+        window.rootPath = "../../";
         window.currentCrate = "nri";
         window.playgroundUrl = "";
     </script>
-    <script src="../../../jquery.js"></script>
-    <script src="../../../main.js"></script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
     
-    <script async src="../../../search-index.js"></script>
+    <script async src="../../search-index.js"></script>
 </body>
 </html>

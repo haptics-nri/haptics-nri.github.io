@@ -151,6 +151,24 @@
 <span id="109">109</span>
 <span id="110">110</span>
 <span id="111">111</span>
+<span id="112">112</span>
+<span id="113">113</span>
+<span id="114">114</span>
+<span id="115">115</span>
+<span id="116">116</span>
+<span id="117">117</span>
+<span id="118">118</span>
+<span id="119">119</span>
+<span id="120">120</span>
+<span id="121">121</span>
+<span id="122">122</span>
+<span id="123">123</span>
+<span id="124">124</span>
+<span id="125">125</span>
+<span id="126">126</span>
+<span id="127">127</span>
+<span id="128">128</span>
+<span id="129">129</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! Utilities for communication between the supervisor thread and services</span>
 
@@ -188,7 +206,7 @@
     <span class='doccomment'>///</span>
     <span class='doccomment'>/// Should initialize any necessary libraries and devices. May be called more than once, but</span>
     <span class='doccomment'>/// teardown() will be called in between.</span>
-    <span class='kw'>fn</span> <span class='ident'>setup</span>() <span class='op'>-&gt;</span> <span class='kw'>Self</span>;
+    <span class='kw'>fn</span> <span class='ident'>setup</span>(<span class='ident'>Sender</span><span class='op'>&lt;</span><span class='ident'>CmdFrom</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='kw'>Self</span>;
 
     <span class='doccomment'>/// Run one &quot;step&quot;.</span>
     <span class='doccomment'>///</span>
@@ -197,7 +215,7 @@
     <span class='doccomment'>/// Return true if we should wait for a command from the supervisor thread before calling</span>
     <span class='doccomment'>/// step() again. Return false to call step() again right away (unless there is a pending</span>
     <span class='doccomment'>/// command).</span>
-    <span class='kw'>fn</span> <span class='ident'>step</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>Sender</span><span class='op'>&lt;</span><span class='ident'>CmdFrom</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span>;
+    <span class='kw'>fn</span> <span class='ident'>step</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span>;
 
     <span class='doccomment'>/// Tear down the service.</span>
     <span class='doccomment'>///</span>
@@ -208,11 +226,29 @@
 
 <span class='comment'>// (Sender&lt;CmdFrom&gt;, name of CmdFrom variant; CmdFrom variant params) -&gt; Result&lt;reply, RecvError&gt;</span>
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>rpc</span> {
-    (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>tx</span>:<span class='ident'>expr</span>, <span class='ident'>CmdFrom</span>::<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>name</span>:<span class='ident'>ident</span>; $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>param</span>:<span class='ident'>expr</span>),<span class='op'>*</span>) <span class='op'>=&gt;</span> {{
+    (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>tx</span>:<span class='ident'>expr</span>, <span class='ident'>CmdFrom</span>::<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>name</span>:<span class='ident'>ident</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>param</span>:<span class='ident'>expr</span>),<span class='op'>*</span>) <span class='op'>=&gt;</span> {{
         <span class='kw'>let</span> (<span class='ident'>msg_tx</span>, <span class='ident'>msg_rx</span>) <span class='op'>=</span> <span class='ident'>channel</span>();
         <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>tx</span>.<span class='ident'>send</span>(<span class='ident'>CmdFrom</span>::<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>name</span>($(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>param</span>),<span class='op'>*</span>, <span class='ident'>msg_tx</span>));
         <span class='ident'>msg_rx</span>.<span class='ident'>recv</span>()
     }}
+}
+
+<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>stub</span> {
+    (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span>:<span class='ident'>ident</span>) <span class='op'>=&gt;</span> {
+        <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span>;
+        <span class='kw'>impl</span> <span class='ident'>Controllable</span> <span class='kw'>for</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span> {
+            <span class='kw'>fn</span> <span class='ident'>setup</span>(<span class='ident'>tx</span>: <span class='ident'>Sender</span><span class='op'>&lt;</span><span class='ident'>CmdFrom</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span> {
+                <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span>
+            }
+
+            <span class='kw'>fn</span> <span class='ident'>step</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span> {
+                <span class='boolval'>true</span>
+            }
+
+            <span class='kw'>fn</span> <span class='ident'>teardown</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) {
+            }
+        }
+    }
 }
 
 <span class='doccomment'>/// Service driving function</span>
@@ -229,7 +265,7 @@
             <span class='prelude-val'>Err</span>(<span class='ident'>e</span>) <span class='op'>=&gt;</span> <span class='kw'>return</span>, <span class='comment'>// main thread exploded?</span>
         }
 
-        <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>c</span> <span class='op'>=</span> <span class='ident'>C</span>::<span class='ident'>setup</span>();
+        <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>c</span> <span class='op'>=</span> <span class='ident'>C</span>::<span class='ident'>setup</span>(<span class='ident'>tx</span>.<span class='ident'>clone</span>());
         <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>should_block</span> <span class='op'>=</span> <span class='boolval'>false</span>;
 
         <span class='kw'>loop</span> {
@@ -256,7 +292,7 @@
                 }
             }
 
-            <span class='ident'>should_block</span> <span class='op'>=</span> <span class='ident'>c</span>.<span class='ident'>step</span>(<span class='ident'>tx</span>.<span class='ident'>clone</span>());
+            <span class='ident'>should_block</span> <span class='op'>=</span> <span class='ident'>c</span>.<span class='ident'>step</span>();
         }
 
         <span class='ident'>c</span>.<span class='ident'>teardown</span>();

@@ -43,16 +43,51 @@
     <section id='main' class="content mod">
 <h1 class='fqn'><span class='in-band'>Module <a href='../index.html'>nri</a>::<wbr><a class='mod' href=''>optoforce</a><wbr></span><span class='out-of-band'><span id='render-detail'>
             <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
-        </span><a id='src-4459' href='../../src/nri/optoforce/mod.rs.html#1-20'>[src]</a></span></h1>
+        </span><a id='src-4797' href='../../src/nri/optoforce/mod.rs.html#1-40'>[src]</a></span></h1>
 <div class='docblock'><p>Service to read data from the OptoForce sensor</p>
+
+<h1 id="optoforce-drivers" class='section-header'><a
+                           href="#optoforce-drivers">Optoforce drivers</a></h1>
+<p>The driver SDK shipped by Optoforce is crap. The example barely compiles, depends on Qt (for
+<em>serial port access</em> of all things), and core dumps the first time it is run (after that it
+freezes instead). The precompiled GUI application actually runs, which is a major step up, but
+it was compiled with an absolute path to the fonts directory in someone&#39;s home directory, so it
+requires a symlink under /home or a LD_PRELOAD library to display any characters. With that
+minor annoyance fixed, it shows numbers and plots that confirm the sensor works! It can even
+log values to a file, which may be useful for sanity checks later. But this isn&#39;t really good
+enough for our use case, unless we did some terrible hack such as starting the GUI to write to
+a file and having the NRI supervisor tail the file.</p>
+
+<p>Luckily, third-party drivers exist. A quick search found liboptoforce, out of ETH Zurich,
+freely available on Github. I installed the software from their PPA. (The source is in a git
+submodule. Unfortunately building it requires ETH Zurich&#39;s own build system, called ReMake,
+which I also checked out into a submodule, but I can&#39;t get that to build, so I can&#39;t build
+liboptoforce either. Therefore, PPA it is.) I was able to compile the example program and it
+shows numbers from the sensor! The Z axis seems to be centered at 30 N, so some calibration
+will be required.</p>
+
+<ul>
+<li>Commands to install liboptoforce:
+<code>
+$ sudo apt-add-repository ppa:ethz-asl/drivers
+$ sudo apt-get update
+$ sudo apt-get install liboptoforce*
+</code></li>
+<li>To compile and run the sample program:
+<code>
+$ sudo apt-get install libboost-{system,thread,signals,chrono,program-options}-dev
+$ cd liboptoforce/src/bin
+$ g++ dump_readings.cpp -std=c++11 -lboost_{program_options,system,chrono} -loptoforce
+$ ./a.out -d /dev/ttyACM0 -s
+</code></li>
+</ul>
 </div><h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
 <table><tr><td><code>use std::prelude::<a class='mod' href='http://doc.rust-lang.org/nightly/std/prelude/v1/index.html' title='std::prelude::v1'>v1</a>::*;</code></td></tr><tr><td><code>use super::comms::{<a class='trait' href='../../nri/comms/trait.Controllable.html' title='nri::comms::Controllable'>Controllable</a>, <a class='enum' href='../../nri/comms/enum.CmdFrom.html' title='nri::comms::CmdFrom'>CmdFrom</a>};</code></td></tr><tr><td><code>use std::sync::mpsc::{<a class='fn' href='http://doc.rust-lang.org/nightly/std/sync/mpsc/fn.channel.html' title='std::sync::mpsc::channel'>channel</a>, <a class='struct' href='http://doc.rust-lang.org/nightly/std/sync/mpsc/struct.Sender.html' title='std::sync::mpsc::Sender'>Sender</a>};</code></td></tr></table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
 <table>
                     <tr>
                         <td><a class='stability Unmarked' title='No stability level'></a><a class='struct' href='struct.Optoforce.html'
                                title='nri::optoforce::Optoforce'>Optoforce</a></td>
-                        <td class='docblock short'><p>Controllable struct for the sensor</p>
-</td>
+                        <td class='docblock short'></td>
                     </tr>
                 </table></section>
     <section id='search' class="content hidden"></section>
