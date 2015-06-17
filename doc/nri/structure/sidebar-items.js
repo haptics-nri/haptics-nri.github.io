@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Structure","Controllable struct for the camera"]],"mod":[["wrapper",""]]});
+initSidebarItems({"mod":[["wrapper",""]],"struct":[["Structure","Controllable struct for the camera"]]});

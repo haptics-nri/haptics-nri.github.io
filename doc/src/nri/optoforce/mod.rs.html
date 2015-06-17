@@ -82,6 +82,16 @@
 <span id="40">40</span>
 <span id="41">41</span>
 <span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! Service to read data from the OptoForce sensor</span>
 <span class='doccomment'>//!</span>
@@ -91,19 +101,24 @@
 <span class='doccomment'>//! _serial port access_ of all things), and core dumps the first time it is run (after that it</span>
 <span class='doccomment'>//! freezes instead). The precompiled GUI application actually runs, which is a major step up, but</span>
 <span class='doccomment'>//! it was compiled with an absolute path to the fonts directory in someone&#39;s home directory, so it</span>
-<span class='doccomment'>//! requires a symlink under /home or a LD_PRELOAD library to display any characters. With that</span>
+<span class='doccomment'>//! requires a symlink under /home or an LD_PRELOAD library to display any characters. With that</span>
 <span class='doccomment'>//! minor annoyance fixed, it shows numbers and plots that confirm the sensor works! It can even</span>
 <span class='doccomment'>//! log values to a file, which may be useful for sanity checks later. But this isn&#39;t really good</span>
 <span class='doccomment'>//! enough for our use case, unless we did some terrible hack such as starting the GUI to write to</span>
 <span class='doccomment'>//! a file and having the NRI supervisor tail the file.</span>
 <span class='doccomment'>//!</span>
-<span class='doccomment'>//! Luckily, third-party drivers exist. A quick search found liboptoforce, out of ETH Zurich,</span>
-<span class='doccomment'>//! freely available on Github. I installed the software from their PPA. (The source is in a git</span>
-<span class='doccomment'>//! submodule. Unfortunately building it requires ETH Zurich&#39;s own build system, called ReMake,</span>
-<span class='doccomment'>//! which I also checked out into a submodule, but I can&#39;t get that to build, so I can&#39;t build</span>
-<span class='doccomment'>//! liboptoforce either. Therefore, PPA it is.) I was able to compile the example program and it</span>
-<span class='doccomment'>//! shows numbers from the sensor! The Z axis seems to be centered at 30 N, so some calibration</span>
-<span class='doccomment'>//! will be required.</span>
+<span class='doccomment'>//! Luckily, third-party drivers exist. A quick search found [liboptoforce][liboptoforce], out of</span>
+<span class='doccomment'>//! ETH Zurich, freely available on Github. I installed the software from their PPA. (The source is</span>
+<span class='doccomment'>//! in a git submodule.  Unfortunately building it requires ETH Zurich&#39;s own build system, called</span>
+<span class='doccomment'>//! ReMake, which I also checked out into a submodule, but I can&#39;t get that to build, so I can&#39;t</span>
+<span class='doccomment'>//! build liboptoforce either. Therefore, PPA it is.) I was able to compile the example program and</span>
+<span class='doccomment'>//! it shows numbers from the sensor!</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! The ETH Zurich package includes a configuration program, which can set the sensor sample speed</span>
+<span class='doccomment'>//! (among other things), and a statistics program which can measure it (among other things).</span>
+<span class='doccomment'>//! Unfortunately, when to set to 1 kHz (the maximum) the sensor sends readings at only 500 Hz.</span>
+<span class='doccomment'>//! This is probably still enough for us. A calibration program is also included, which will be</span>
+<span class='doccomment'>//! useful for zeroing the sensor.</span>
 <span class='doccomment'>//!</span>
 <span class='doccomment'>//! - Commands to install liboptoforce:</span>
 <span class='doccomment'>//! &lt;code&gt;</span>
@@ -115,9 +130,14 @@
 <span class='doccomment'>//! &lt;code&gt;</span>
 <span class='doccomment'>//! $ sudo apt-get install libboost-{system,thread,signals,chrono,program-options}-dev</span>
 <span class='doccomment'>//! $ cd liboptoforce/src/bin</span>
-<span class='doccomment'>//! $ g++ dump_readings.cpp -std=c++11 -lboost_{program_options,system,chrono} -loptoforce</span>
-<span class='doccomment'>//! $ ./a.out -d /dev/ttyACM0 -s</span>
+<span class='doccomment'>//! $ make</span>
+<span class='doccomment'>//! $ ./configure -d /dev/ttyACM0 -s 1000</span>
+<span class='doccomment'>//! $ ./statistics -d /dev/ttyACM0 -s</span>
+<span class='doccomment'>//! $ ./dump_readings -d /dev/ttyACM0 -s</span>
+<span class='doccomment'>//! $ ./calibrate -d /dev/ttyACM0</span>
 <span class='doccomment'>//! &lt;/code&gt;</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! [liboptoforce]: https://github.com/ethz-asl/liboptoforce</span>
 
 <span class='kw'>use</span> <span class='ident'>super</span>::<span class='ident'>comms</span>::{<span class='ident'>Controllable</span>, <span class='ident'>CmdFrom</span>};
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>sync</span>::<span class='ident'>mpsc</span>::{<span class='ident'>channel</span>, <span class='ident'>Sender</span>};
