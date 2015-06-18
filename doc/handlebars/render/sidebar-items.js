@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["RenderContext",""],["RenderError",""]],"trait":[["Renderable",""]]});
+initSidebarItems({"trait":[["Renderable",""]],"struct":[["RenderContext",""],["RenderError",""]]});

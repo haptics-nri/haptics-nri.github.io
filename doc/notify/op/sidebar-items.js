@@ -1,1 +1,1 @@
-initSidebarItems({"constant":[["CHMOD",""],["CREATE",""],["REMOVE",""],["RENAME",""],["WRITE",""]],"struct":[["Op",""]]});
+initSidebarItems({"struct":[["Op",""]],"constant":[["CHMOD",""],["CREATE",""],["REMOVE",""],["RENAME",""],["WRITE",""]]});

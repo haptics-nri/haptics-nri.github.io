@@ -169,6 +169,27 @@
 <span id="127">127</span>
 <span id="128">128</span>
 <span id="129">129</span>
+<span id="130">130</span>
+<span id="131">131</span>
+<span id="132">132</span>
+<span id="133">133</span>
+<span id="134">134</span>
+<span id="135">135</span>
+<span id="136">136</span>
+<span id="137">137</span>
+<span id="138">138</span>
+<span id="139">139</span>
+<span id="140">140</span>
+<span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
+<span id="146">146</span>
+<span id="147">147</span>
+<span id="148">148</span>
+<span id="149">149</span>
+<span id="150">150</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! Utilities for communication between the supervisor thread and services</span>
 
@@ -224,20 +245,41 @@
     <span class='kw'>fn</span> <span class='ident'>teardown</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>);
 }
 
-<span class='comment'>// (Sender&lt;CmdFrom&gt;, name of CmdFrom variant; CmdFrom variant params) -&gt; Result&lt;reply, RecvError&gt;</span>
+<span class='doccomment'>/// Convenience macro for making an &quot;RPC&quot; call from a service up to the main thread. This is done</span>
+<span class='doccomment'>/// by generating a nonce channel, stuffind the sending end into a message that gets sent to the</span>
+<span class='doccomment'>/// main thread, and then waiting for the main thread to send back a reply.</span>
+<span class='doccomment'>/// </span>
+<span class='doccomment'>/// This is a macro instead of a function because you need to pass in the _name_ of a CmdFrom</span>
+<span class='doccomment'>/// variant without constructing it (because a Sender is needed to construct it, but the macro is</span>
+<span class='doccomment'>/// creating the channel for you). Possibly a better design would be structs and a trait/generic.</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// * Inputs:</span>
+<span class='doccomment'>///     - tx: Sender&lt;CmdFrom&gt; = Sender that the service uses to send commands to the main thread</span>
+<span class='doccomment'>///     - name = name of a CmdFrom variant that has a Sender&lt;T&gt; as the last parameter</span>
+<span class='doccomment'>///     - params = any other parameters for the CmdFrom variant</span>
+<span class='doccomment'>/// * Outputs:</span>
+<span class='doccomment'>///     - Result&lt;T, mpsc::RecvError&gt; = the response received (or not) from the main thread</span>
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>rpc</span> {
     (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>tx</span>:<span class='ident'>expr</span>, <span class='ident'>CmdFrom</span>::<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>name</span>:<span class='ident'>ident</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>param</span>:<span class='ident'>expr</span>),<span class='op'>*</span>) <span class='op'>=&gt;</span> {{
-        <span class='kw'>let</span> (<span class='ident'>msg_tx</span>, <span class='ident'>msg_rx</span>) <span class='op'>=</span> <span class='ident'>channel</span>();
-        <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>tx</span>.<span class='ident'>send</span>(<span class='ident'>CmdFrom</span>::<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>name</span>($(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>param</span>),<span class='op'>*</span>, <span class='ident'>msg_tx</span>));
+        <span class='kw'>let</span> (<span class='ident'>msg_tx</span>, <span class='ident'>msg_rx</span>) <span class='op'>=</span> ::<span class='ident'>std</span>::<span class='ident'>sync</span>::<span class='ident'>mpsc</span>::<span class='ident'>channel</span>();
+        <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>tx</span>.<span class='ident'>send</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>comms</span>::<span class='ident'>CmdFrom</span>::<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>name</span>($(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>param</span>),<span class='op'>*</span>, <span class='ident'>msg_tx</span>));
         <span class='ident'>msg_rx</span>.<span class='ident'>recv</span>()
     }}
 }
 
+<span class='doccomment'>/// Convenience macro for defining a stub service that doesn&#39;t do anything (yet). Defines a</span>
+<span class='doccomment'>/// zero-sized struct and an impl that blocks between receiving messages from the main thread (so</span>
+<span class='doccomment'>/// it doesn&#39;t do anything, but it doesn&#39;t sit in a CPU-busy loop either).</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// * Inputs:</span>
+<span class='doccomment'>///     - t = name of the Controllable</span>
+<span class='doccomment'>/// * Items created:</span>
+<span class='doccomment'>///     - pub struct (named $t) and stub impl</span>
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>stub</span> {
     (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span>:<span class='ident'>ident</span>) <span class='op'>=&gt;</span> {
         <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span>;
-        <span class='kw'>impl</span> <span class='ident'>Controllable</span> <span class='kw'>for</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span> {
-            <span class='kw'>fn</span> <span class='ident'>setup</span>(<span class='ident'>tx</span>: <span class='ident'>Sender</span><span class='op'>&lt;</span><span class='ident'>CmdFrom</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span> {
+        <span class='kw'>impl</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>comms</span>::<span class='ident'>Controllable</span> <span class='kw'>for</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span> {
+            <span class='kw'>fn</span> <span class='ident'>setup</span>(<span class='ident'>tx</span>: ::<span class='ident'>std</span>::<span class='ident'>sync</span>::<span class='ident'>mpsc</span>::<span class='ident'>Sender</span><span class='op'>&lt;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>comms</span>::<span class='ident'>CmdFrom</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span> {
                 <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span>
             }
 
