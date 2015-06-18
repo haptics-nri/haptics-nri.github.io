@@ -190,6 +190,7 @@
 <span id="148">148</span>
 <span id="149">149</span>
 <span id="150">150</span>
+<span id="151">151</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! Utilities for communication between the supervisor thread and services</span>
 
@@ -246,7 +247,7 @@
 }
 
 <span class='doccomment'>/// Convenience macro for making an &quot;RPC&quot; call from a service up to the main thread. This is done</span>
-<span class='doccomment'>/// by generating a nonce channel, stuffind the sending end into a message that gets sent to the</span>
+<span class='doccomment'>/// by generating a nonce channel, stuffing the sending end into a message that gets sent to the</span>
 <span class='doccomment'>/// main thread, and then waiting for the main thread to send back a reply.</span>
 <span class='doccomment'>/// </span>
 <span class='doccomment'>/// This is a macro instead of a function because you need to pass in the _name_ of a CmdFrom</span>
@@ -254,11 +255,12 @@
 <span class='doccomment'>/// creating the channel for you). Possibly a better design would be structs and a trait/generic.</span>
 <span class='doccomment'>///</span>
 <span class='doccomment'>/// * Inputs:</span>
-<span class='doccomment'>///     - tx: Sender&lt;CmdFrom&gt; = Sender that the service uses to send commands to the main thread</span>
+<span class='doccomment'>///     - tx: Sender\&lt;CmdFrom&gt; = Sender that the service uses to send commands to the main thread</span>
 <span class='doccomment'>///     - name = name of a CmdFrom variant that has a Sender&lt;T&gt; as the last parameter</span>
 <span class='doccomment'>///     - params = any other parameters for the CmdFrom variant</span>
 <span class='doccomment'>/// * Outputs:</span>
-<span class='doccomment'>///     - Result&lt;T, mpsc::RecvError&gt; = the response received (or not) from the main thread</span>
+<span class='doccomment'>///     - Result\&lt;T, mpsc::RecvError&gt; = the response received (or not) from the main thread</span>
+<span class='attribute'>#[<span class='ident'>macro_export</span>]</span>
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>rpc</span> {
     (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>tx</span>:<span class='ident'>expr</span>, <span class='ident'>CmdFrom</span>::<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>name</span>:<span class='ident'>ident</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>param</span>:<span class='ident'>expr</span>),<span class='op'>*</span>) <span class='op'>=&gt;</span> {{
         <span class='kw'>let</span> (<span class='ident'>msg_tx</span>, <span class='ident'>msg_rx</span>) <span class='op'>=</span> ::<span class='ident'>std</span>::<span class='ident'>sync</span>::<span class='ident'>mpsc</span>::<span class='ident'>channel</span>();
