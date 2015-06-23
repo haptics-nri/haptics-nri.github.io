@@ -92,7 +92,7 @@
 
   <span class='comment'>//compile returns an Option, we use unwrap() to deref it directly here</span>
   <span class='ident'>handlebars</span>.<span class='ident'>register_template_string</span>(<span class='string'>&quot;helloworld&quot;</span>, <span class='ident'>source</span>.<span class='ident'>to_string</span>())
-          .<span class='ident'>ok</span>().<span class='ident'>expect</span>(<span class='string'>&quot;template created&quot;</span>);
+          .<span class='ident'>ok</span>().<span class='ident'>unwrap</span>();
 }
 </pre>
 
@@ -129,7 +129,7 @@
 
   <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>handlebars</span> <span class='op'>=</span> <span class='ident'>Handlebars</span>::<span class='ident'>new</span>();
   <span class='ident'>handlebars</span>.<span class='ident'>register_template_string</span>(<span class='string'>&quot;helloworld&quot;</span>, <span class='ident'>source</span>.<span class='ident'>to_string</span>())
-          .<span class='ident'>ok</span>().<span class='ident'>expect</span>(<span class='string'>&quot;template creation failed&quot;</span>);
+          .<span class='ident'>ok</span>().<span class='ident'>unwrap</span>();
 
   <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>data</span> <span class='op'>=</span> <span class='ident'>Person</span> {
       <span class='ident'>name</span>: <span class='string'>&quot;Ning Sun&quot;</span>.<span class='ident'>to_string</span>(),

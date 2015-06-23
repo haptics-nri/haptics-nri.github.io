@@ -43,14 +43,39 @@
     <section id='main' class="content mod">
 <h1 class='fqn'><span class='in-band'>Module <a href='../index.html'>nri</a>::<wbr><a class='mod' href=''>bluefox</a><wbr></span><span class='out-of-band'><span id='render-detail'>
             <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
-        </span><a id='src-1346' href='../../src/nri/bluefox/mod.rs.html#1-55'>[src]</a></span></h1>
+        </span><a id='src-2971' href='../../src/nri/bluefox/mod.rs.html#1-147'>[src]</a></span></h1>
 <div class='docblock'><p>Service to capture frames from the mvBlueFOX3 camera</p>
 </div><h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
-<table><tr><td><code>extern crate time;</code></td></tr><tr><td><code>use std::prelude::<a class='mod' href='http://doc.rust-lang.org/nightly/std/prelude/v1/index.html' title='std::prelude::v1'>v1</a>::*;</code></td></tr><tr><td><code>use std::fs::<a class='struct' href='http://doc.rust-lang.org/nightly/std/fs/struct.File.html' title='std::fs::File'>File</a>;</code></td></tr><tr><td><code>use std::io::<a class='trait' href='http://doc.rust-lang.org/nightly/std/io/trait.Write.html' title='std::io::Write'>Write</a>;</code></td></tr><tr><td><code>use std::sync::mpsc::{<a class='fn' href='http://doc.rust-lang.org/nightly/std/sync/mpsc/fn.channel.html' title='std::sync::mpsc::channel'>channel</a>, <a class='struct' href='http://doc.rust-lang.org/nightly/std/sync/mpsc/struct.Sender.html' title='std::sync::mpsc::Sender'>Sender</a>};</code></td></tr><tr><td><code>use super::comms::{<a class='trait' href='../../nri/comms/trait.Controllable.html' title='nri::comms::Controllable'>Controllable</a>, <a class='enum' href='../../nri/comms/enum.CmdFrom.html' title='nri::comms::CmdFrom'>CmdFrom</a>};</code></td></tr></table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table><tr><td><code>extern crate time;</code></td></tr><tr><td><code>extern crate image;</code></td></tr><tr><td><code>use std::prelude::<a class='mod' href='http://doc.rust-lang.org/nightly/std/prelude/v1/index.html' title='std::prelude::v1'>v1</a>::*;</code></td></tr><tr><td><code>use std::<a class='mod' href='http://doc.rust-lang.org/nightly/std/thread/index.html' title='std::thread'>thread</a>;</code></td></tr><tr><td><code>use std::<a class='mod' href='http://doc.rust-lang.org/nightly/core/mem/index.html' title='core::mem'>mem</a>;</code></td></tr><tr><td><code>use std::<a class='mod' href='http://doc.rust-lang.org/nightly/std/fs/index.html' title='std::fs'>fs</a>;</code></td></tr><tr><td><code>use std::fs::<a class='struct' href='http://doc.rust-lang.org/nightly/std/fs/struct.File.html' title='std::fs::File'>File</a>;</code></td></tr><tr><td><code>use std::io::{<a class='trait' href='http://doc.rust-lang.org/nightly/std/io/trait.Read.html' title='std::io::Read'>Read</a>, <a class='trait' href='http://doc.rust-lang.org/nightly/std/io/trait.Write.html' title='std::io::Write'>Write</a>};</code></td></tr><tr><td><code>use self::image::{<a class='mod' href='../../image/imageops/index.html' title='image::imageops'>imageops</a>, <a class='struct' href='../../image/buffer/struct.ImageBuffer.html' title='image::buffer::ImageBuffer'>ImageBuffer</a>, <a class='enum' href='../../image/color/enum.ColorType.html' title='image::color::ColorType'>ColorType</a>, <a class='enum' href='../../image/imageops/sample/enum.FilterType.html' title='image::imageops::sample::FilterType'>FilterType</a>};</code></td></tr><tr><td><code>use self::<a class='mod'
+                                            href='./image/index.html'>image</a>::<a class='mod'
+                                            href='./image/png/index.html'>png</a>::<a class='struct' href='../../image/png/encoder/struct.PNGEncoder.html' title='image::png::encoder::PNGEncoder'>PNGEncoder</a>;</code></td></tr><tr><td><code>use std::sync::mpsc::{<a class='fn' href='http://doc.rust-lang.org/nightly/std/sync/mpsc/fn.channel.html' title='std::sync::mpsc::channel'>channel</a>, <a class='struct' href='http://doc.rust-lang.org/nightly/std/sync/mpsc/struct.Sender.html' title='std::sync::mpsc::Sender'>Sender</a>, <a class='struct' href='http://doc.rust-lang.org/nightly/std/sync/mpsc/struct.SendError.html' title='std::sync::mpsc::SendError'>SendError</a>};</code></td></tr><tr><td><code>use super::comms::{<a class='trait' href='../../nri/comms/trait.Controllable.html' title='nri::comms::Controllable'>Controllable</a>, <a class='enum' href='../../nri/comms/enum.CmdFrom.html' title='nri::comms::CmdFrom'>CmdFrom</a>};</code></td></tr></table><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
+<table>
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='mod' href='wrapper/index.html'
+                               title='nri::bluefox::wrapper'>wrapper</a></td>
+                        <td class='docblock short'></td>
+                    </tr>
+                </table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
 <table>
                     <tr>
                         <td><a class='stability Unmarked' title='No stability level'></a><a class='struct' href='struct.Bluefox.html'
                                title='nri::bluefox::Bluefox'>Bluefox</a></td>
+                        <td class='docblock short'><p>Controllable struct for the camera</p>
+</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='struct' href='struct.RestartableThread.html'
+                               title='nri::bluefox::RestartableThread'>RestartableThread</a></td>
+                        <td class='docblock short'><p>Container for a thread that repeatedly performs some action in response to input. Can be
+stopped and restarted.</p>
+</td>
+                    </tr>
+                </table><h2 id='types' class='section-header'><a href="#types">Type Definitions</a></h2>
+<table>
+                    <tr>
+                        <td><a class='stability Unmarked' title='No stability level'></a><a class='type' href='type.PngStuff.html'
+                               title='nri::bluefox::PngStuff'>PngStuff</a></td>
                         <td class='docblock short'></td>
                     </tr>
                 </table></section>

@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Helper",""],["Template",""],["TemplateError",""]]});
+initSidebarItems({"struct":[["Template",""],["TemplateError",""]]});

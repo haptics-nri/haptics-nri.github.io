@@ -181,6 +181,23 @@
 <span id="139">139</span>
 <span id="140">140</span>
 <span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
+<span id="146">146</span>
+<span id="147">147</span>
+<span id="148">148</span>
+<span id="149">149</span>
+<span id="150">150</span>
+<span id="151">151</span>
+<span id="152">152</span>
+<span id="153">153</span>
+<span id="154">154</span>
+<span id="155">155</span>
+<span id="156">156</span>
+<span id="157">157</span>
+<span id="158">158</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! Web interface to view and control running services</span>
 <span class='doccomment'>//!</span>
@@ -193,6 +210,7 @@
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>router</span>;
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>hyper</span>;
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>rustc_serialize</span> <span class='kw'>as</span> <span class='ident'>serialize</span>;
+<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>websocket</span>;
 
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>::<span class='ident'>Write</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>path</span>::<span class='ident'>Path</span>;
@@ -209,6 +227,7 @@
 <span class='kw'>use</span> <span class='self'>self</span>::<span class='ident'>mount</span>::<span class='ident'>Mount</span>;
 <span class='kw'>use</span> <span class='self'>self</span>::<span class='ident'>router</span>::<span class='ident'>Router</span>;
 <span class='kw'>use</span> <span class='self'>self</span>::<span class='ident'>hyper</span>::<span class='ident'>server</span>::<span class='ident'>Listening</span>;
+<span class='kw'>use</span> <span class='self'>self</span>::<span class='ident'>websocket</span>::<span class='ident'>Server</span>;
 
 <span class='doccomment'>/// Service descriptor</span>
 <span class='doccomment'>///</span>
@@ -219,20 +238,29 @@
 <span class='kw'>struct</span> <span class='ident'>Service</span> {
     <span class='ident'>name</span>: <span class='ident'>String</span>,
     <span class='ident'>shortname</span>: <span class='ident'>String</span>,
+    <span class='ident'>extra</span>: <span class='ident'>String</span>
 }
 
 <span class='kw'>impl</span> <span class='ident'>Service</span> {
     <span class='doccomment'>/// Create a new service descriptor with the given name</span>
-    <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>s</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>, <span class='ident'>t</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='ident'>Service</span> {
-        <span class='ident'>Service</span> { <span class='ident'>name</span>: <span class='ident'>s</span>.<span class='ident'>to_string</span>(), <span class='ident'>shortname</span>: <span class='ident'>t</span>.<span class='ident'>to_string</span>() }
+    <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>s</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>, <span class='ident'>t</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>, <span class='ident'>e</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='ident'>Service</span> {
+        <span class='ident'>Service</span> { <span class='ident'>name</span>: <span class='ident'>s</span>.<span class='ident'>to_string</span>(), <span class='ident'>shortname</span>: <span class='ident'>t</span>.<span class='ident'>to_string</span>(), <span class='ident'>extra</span>: <span class='ident'>e</span>.<span class='ident'>to_string</span>() }
     }
+}
+
+<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>jsonize</span> {
+    (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>map</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>selph</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>var</span>:<span class='ident'>ident</span>) <span class='op'>=&gt;</span> {{
+        <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>map</span>.<span class='ident'>insert</span>(<span class='macro'>stringify</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>var</span>).<span class='ident'>to_string</span>(), <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>selph</span>.<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>var</span>.<span class='ident'>to_json</span>())
+    }};
+    (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>map</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>selph</span>:<span class='ident'>ident</span>; $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>var</span>:<span class='ident'>ident</span>),<span class='op'>+</span>) <span class='op'>=&gt;</span> {{
+        $(<span class='macro'>jsonize</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>map</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>selph</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>var</span>));<span class='op'>+</span>
+    }}
 }
 
 <span class='kw'>impl</span> <span class='ident'>ToJson</span> <span class='kw'>for</span> <span class='ident'>Service</span> {
     <span class='kw'>fn</span> <span class='ident'>to_json</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Json</span> {
         <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>m</span>: <span class='ident'>BTreeMap</span><span class='op'>&lt;</span><span class='ident'>String</span>, <span class='ident'>Json</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>BTreeMap</span>::<span class='ident'>new</span>();
-        <span class='ident'>m</span>.<span class='ident'>insert</span>(<span class='string'>&quot;name&quot;</span>.<span class='ident'>to_string</span>(), <span class='self'>self</span>.<span class='ident'>name</span>.<span class='ident'>to_json</span>());
-        <span class='ident'>m</span>.<span class='ident'>insert</span>(<span class='string'>&quot;shortname&quot;</span>.<span class='ident'>to_string</span>(), <span class='self'>self</span>.<span class='ident'>shortname</span>.<span class='ident'>to_json</span>());
+        <span class='macro'>jsonize</span><span class='macro'>!</span>(<span class='ident'>m</span>, <span class='self'>self</span>; <span class='ident'>name</span>, <span class='ident'>shortname</span>, <span class='ident'>extra</span>);
         <span class='ident'>m</span>.<span class='ident'>to_json</span>()
     }
 }
@@ -245,10 +273,10 @@
 <span class='doccomment'>/// Handler for the main page of the web interface</span>
 <span class='kw'>fn</span> <span class='ident'>index</span>(<span class='ident'>req</span>: <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>Request</span>) <span class='op'>-&gt;</span> <span class='ident'>IronResult</span><span class='op'>&lt;</span><span class='ident'>Response</span><span class='op'>&gt;</span> {
     <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>data</span> <span class='op'>=</span> <span class='ident'>BTreeMap</span>::<span class='op'>&lt;</span><span class='ident'>String</span>, <span class='ident'>Json</span><span class='op'>&gt;</span>::<span class='ident'>new</span>();
-    <span class='ident'>data</span>.<span class='ident'>insert</span>(<span class='string'>&quot;services&quot;</span>.<span class='ident'>to_string</span>(), <span class='macro'>vec</span><span class='macro'>!</span>[ <span class='ident'>Service</span>::<span class='ident'>new</span>(<span class='string'>&quot;Structure Sensor&quot;</span>, <span class='string'>&quot;structure&quot;</span>),
-                                              <span class='ident'>Service</span>::<span class='ident'>new</span>(<span class='string'>&quot;mvBlueFOX3&quot;</span>,       <span class='string'>&quot;bluefox&quot;</span>  ),
-                                              <span class='ident'>Service</span>::<span class='ident'>new</span>(<span class='string'>&quot;OptoForce&quot;</span>,        <span class='string'>&quot;optoforce&quot;</span>),
-                                              <span class='ident'>Service</span>::<span class='ident'>new</span>(<span class='string'>&quot;SynTouch BioTac&quot;</span>,  <span class='string'>&quot;biotac&quot;</span>   ),
+    <span class='ident'>data</span>.<span class='ident'>insert</span>(<span class='string'>&quot;services&quot;</span>.<span class='ident'>to_string</span>(), <span class='macro'>vec</span><span class='macro'>!</span>[ <span class='ident'>Service</span>::<span class='ident'>new</span>(<span class='string'>&quot;Structure Sensor&quot;</span>, <span class='string'>&quot;structure&quot;</span>, <span class='string'>&quot;&lt;img id=\&quot;structure\&quot; class=\&quot;latest\&quot; src=\&quot;img/structure_latest.png\&quot; /&gt;&quot;</span>),
+                                              <span class='ident'>Service</span>::<span class='ident'>new</span>(<span class='string'>&quot;mvBlueFOX3&quot;</span>,       <span class='string'>&quot;bluefox&quot;</span>  , <span class='string'>&quot;&lt;img id=\&quot;bluefox\&quot; class=\&quot;latest\&quot; src=\&quot;img/bluefox_latest.png\&quot; /&gt;&quot;</span>),
+                                              <span class='ident'>Service</span>::<span class='ident'>new</span>(<span class='string'>&quot;OptoForce&quot;</span>,        <span class='string'>&quot;optoforce&quot;</span>, <span class='string'>&quot;&quot;</span>),
+                                              <span class='ident'>Service</span>::<span class='ident'>new</span>(<span class='string'>&quot;SynTouch BioTac&quot;</span>,  <span class='string'>&quot;biotac&quot;</span>   , <span class='string'>&quot;&quot;</span>),
                                             ].<span class='ident'>to_json</span>());
 
     <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>resp</span> <span class='op'>=</span> <span class='ident'>Response</span>::<span class='ident'>new</span>();
@@ -283,15 +311,18 @@
 }
 
 <span class='doccomment'>/// Controllable struct for the web server</span>
-<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Web</span> {
-    <span class='doccomment'>/// Private handle to the server</span>
+<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Web</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span> {
+    <span class='doccomment'>/// Private handle to the HTTP server</span>
     <span class='ident'>listening</span>: <span class='ident'>Listening</span>,
+
+    <span class='doccomment'>/// Private handle to the websocket server</span>
+    <span class='ident'>websocket</span>: <span class='ident'>Server</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span>,
 }
 
-<span class='kw'>impl</span> <span class='ident'>Controllable</span> <span class='kw'>for</span> <span class='ident'>Web</span> {
-    <span class='kw'>fn</span> <span class='ident'>setup</span>(<span class='ident'>tx</span>: <span class='ident'>Sender</span><span class='op'>&lt;</span><span class='ident'>CmdFrom</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='ident'>Web</span> {
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span> <span class='ident'>Controllable</span> <span class='kw'>for</span> <span class='ident'>Web</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span> {
+    <span class='kw'>fn</span> <span class='ident'>setup</span>(<span class='ident'>tx</span>: <span class='ident'>Sender</span><span class='op'>&lt;</span><span class='ident'>CmdFrom</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='ident'>Web</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span> {
         <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>mount</span> <span class='op'>=</span> <span class='ident'>Mount</span>::<span class='ident'>new</span>();
-        <span class='kw'>for</span> <span class='ident'>p</span> <span class='kw'>in</span> [<span class='string'>&quot;css&quot;</span>, <span class='string'>&quot;fonts&quot;</span>, <span class='string'>&quot;js&quot;</span>].<span class='ident'>iter</span>() {
+        <span class='kw'>for</span> <span class='ident'>p</span> <span class='kw'>in</span> [<span class='string'>&quot;css&quot;</span>, <span class='string'>&quot;fonts&quot;</span>, <span class='string'>&quot;js&quot;</span>, <span class='string'>&quot;img&quot;</span>].<span class='ident'>iter</span>() {
             <span class='ident'>mount</span>.<span class='ident'>mount</span>(<span class='kw-2'>&amp;</span><span class='macro'>format</span><span class='macro'>!</span>(<span class='string'>&quot;/{}/&quot;</span>, <span class='ident'>p</span>),
                         <span class='ident'>Static</span>::<span class='ident'>new</span>(<span class='ident'>Path</span>::<span class='ident'>new</span>(<span class='kw-2'>&amp;</span><span class='ident'>relpath</span>(<span class='string'>&quot;bootstrap&quot;</span>)).<span class='ident'>join</span>(<span class='ident'>p</span>)));
         }
@@ -311,7 +342,9 @@
 
         <span class='kw'>let</span> <span class='ident'>listening</span> <span class='op'>=</span> <span class='ident'>Iron</span>::<span class='ident'>new</span>(<span class='ident'>chain</span>).<span class='ident'>http</span>(<span class='string'>&quot;0.0.0.0:3000&quot;</span>).<span class='ident'>unwrap</span>();
 
-        <span class='ident'>Web</span> { <span class='ident'>listening</span>: <span class='ident'>listening</span> }
+        <span class='kw'>let</span> <span class='ident'>ws</span> <span class='op'>=</span> <span class='ident'>Server</span>::<span class='ident'>bind</span>(<span class='string'>&quot;0.0.0.0:3001&quot;</span>).<span class='ident'>unwrap</span>();
+
+        <span class='ident'>Web</span> { <span class='ident'>listening</span>: <span class='ident'>listening</span>, <span class='ident'>websocket</span>: <span class='ident'>ws</span> }
     }
 
     <span class='kw'>fn</span> <span class='ident'>step</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span> {
@@ -320,6 +353,7 @@
     
     <span class='kw'>fn</span> <span class='ident'>teardown</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) {
         <span class='self'>self</span>.<span class='ident'>listening</span>.<span class='ident'>close</span>().<span class='ident'>unwrap</span>(); <span class='comment'>// FIXME this does not do anything (known bug in hyper)</span>
+        <span class='comment'>// FIXME no way to close the websocket server?</span>
     }
 }
 

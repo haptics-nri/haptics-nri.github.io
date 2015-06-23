@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Context",""],["Handlebars",""],["Helper",""],["RenderContext",""],["RenderError",""],["Template",""],["TemplateError",""]],"trait":[["HelperDef","Helper Definitions"],["JsonRender",""],["JsonTruthy",""],["Renderable",""]]});
+initSidebarItems({"trait":[["HelperDef","Helper Definitions"],["JsonRender",""],["JsonTruthy",""],["Renderable",""]],"struct":[["Context",""],["Handlebars",""],["Helper",""],["RenderContext",""],["RenderError",""],["Template",""],["TemplateError",""]]});

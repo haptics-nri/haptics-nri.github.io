@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["StreamingDecoder","GIF decoder which supports streaming"]],"enum":[["Decoded","Indicates whether a certain object has been decoded"],["DecodingError","Decoding error."],["Extensions","Configures how extensions should be handled"]]});

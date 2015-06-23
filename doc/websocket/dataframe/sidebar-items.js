@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["DataFrame","Represents a WebSocket data frame."]],"enum":[["Opcode","Represents a WebSocket data frame opcode"]]});
